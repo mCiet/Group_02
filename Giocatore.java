@@ -7,6 +7,6 @@ public class Giocatore {
 	
 	int numeroGiocatore;
 	
-	int salinita;
+	int sesso;
 
 }

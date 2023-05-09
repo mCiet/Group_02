@@ -21,7 +21,6 @@ public class Card_object {
 			return true;
 		}
 		return false;
-		
 	}
 	
 	public boolean isBlue () {

@@ -40,5 +40,12 @@ public class Tokens {
 		}
 		return false;
 	}
+	
+	public boolean isEndgame_Trigger() {
+		if(this.score ==1) {
+			return true;
+		}
+		return false;
+	}
  
 }

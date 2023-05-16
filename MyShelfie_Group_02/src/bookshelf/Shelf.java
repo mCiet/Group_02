@@ -1,6 +1,6 @@
 package bookshelf;
 
-import tiles.Tiles;
+import tiles.*;
 
 public class Shelf {
 

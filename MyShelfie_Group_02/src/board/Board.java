@@ -196,9 +196,15 @@ public class Board {
 		for (int k=0; k<9; k++) {
 			for (int j=0; j<9; j++) {
 				if(table[k][j].gObject()==ObjectEnum.EMPTY) {
-					//table[k][j]=bag.RandGeneration();
+					table[k][j]=borsa.RandGeneration();
 				}
 			}
+		}
+	}
+	
+	public void printBoard() {
+		for (int k=0; k<9; k++) {
+				System.out.println(table[k][0].gObject()+ " "+ table[k][1].gObject()+ " "+ table[k][2].gObject()+ " " + table[k][3].gObject()+ " " + table[k][4].gObject()+ " "+table[k][5].gObject()+ " "+ table[k][6].gObject()+ " "+ table[k][7].gObject()+ " "+ table[k][8].gObject()+ " ");
 		}
 	}
 		

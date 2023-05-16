@@ -55,7 +55,7 @@ public class Board {
 		for (int k=0; k<9; k++) {
 			for (int j=0; j<9; j++) {
 				if(table[k][j].gObject()==ObjectEnum.EMPTY) {
-					//table[k][j]=bag.RandGen();
+					//table[k][j]=bag.RandGeneration();
 				}
 			}
 		}

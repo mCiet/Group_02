@@ -15,6 +15,8 @@ public class Tiles {
 		return this.colour;
 		
 	}
+	
+
 
 	/*public boolean isPink () {
 		if(this.colour== 1) {

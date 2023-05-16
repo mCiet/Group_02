@@ -3,7 +3,7 @@ package cards;
 import tiles.ObjectEnum;
 
 
-public enum personal_goals {
+public enum personal_goals { 
 
 	GOALS1(new ObjectEnum[][]{{ObjectEnum.PINK, ObjectEnum.EMPTY, ObjectEnum.BLUE, ObjectEnum.EMPTY, ObjectEnum.EMPTY},
 		{ObjectEnum.EMPTY,ObjectEnum.EMPTY,ObjectEnum.EMPTY,ObjectEnum.EMPTY,ObjectEnum.GREEN},

@@ -4,14 +4,19 @@ package tiles;
  */
 public class Tiles {
 	
-	private int colour;
+	private ObjectEnum colour;
 	
-	public Tiles(int colour) {
+	
+	public Tiles(ObjectEnum colour) {
 		this.colour = colour;
 	}
 	
-	
-	public boolean isPink () {
+	public ObjectEnum gObject() {
+		return this.colour;
+		
+	}
+
+	/*public boolean isPink () {
 		if(this.colour== 1) {
 			return true;
 		}
@@ -55,7 +60,7 @@ public class Tiles {
 		
 	}
 	
-	
+	*/
 	
 	
 	

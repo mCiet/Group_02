@@ -1,4 +1,6 @@
-/tokens/
-/cards/
-/tiles/
 /board/
+/cards/
+/main/
+/player/
+/tiles/
+/tokens/

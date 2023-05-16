@@ -1,6 +1,6 @@
-package cards;
+package tiles;
 
-public enum CardObjectEnum {
+public enum ObjectEnum {
 
 	NULL("null"),
 	EMPTY("empty"),
@@ -13,7 +13,7 @@ public enum CardObjectEnum {
 	
 	private final String object;
 
-	private CardObjectEnum(String object) {
+	private ObjectEnum(String object) {
 		this.object = object;
 	}
 	

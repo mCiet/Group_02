@@ -1,7 +1,5 @@
 package tiles;
-/* ho creato pacchetto e classe tiles perchè nei folder di gioco li idnetifica come pedine, semplicemente, sposterei qui
- * ciò che è nella classe Card_objects, fatemi sapere in caso si possa fare diversamente.
- */
+
 public class Tiles {
 	
 	private ObjectEnum colour;

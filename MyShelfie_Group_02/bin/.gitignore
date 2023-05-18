@@ -1,9 +1,9 @@
 /board/
 /bookshelf/
 /cards/
-/gameCONTROLLER/
+/gameController/
 /main/
+/module-info.class
 /player/
 /tiles/
 /tokens/
-/gameController/

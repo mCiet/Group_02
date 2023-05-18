@@ -16,15 +16,15 @@ public class Tiles {
 	
 
 
-	/*public boolean isPink () {
-		if(this.colour== 1) {
+	public boolean isPink () {
+		if((this.colour).equals(ObjectEnum.PINK)) {
 			return true;
 		}
 		return false;
 	}
 	
 	public boolean isBlue () {
-		if(this.colour== 2) {
+		if((this.colour).equals(ObjectEnum.BLUE)) {
 			return true;
 		}
 		return false;
@@ -32,35 +32,35 @@ public class Tiles {
 	}
 	
 	public boolean isGreen () {
-		if(this.colour== 3) {
+		if((this.colour).equals(ObjectEnum.GREEN)) {
 			return true;
 		}
 		return false;
 		
 	}
 	public boolean isWhite () {
-		if(this.colour== 4) {
+		if((this.colour).equals(ObjectEnum.WHITE)) {
 			return true;
 		}
 		return false;
 		
 	}
 	public boolean isYellow () {
-		if(this.colour== 5) {
+		if((this.colour).equals(ObjectEnum.YELLOW)) {
 			return true;
 		}
 		return false;
 		
 	}
 	public boolean isLightBlue () {
-		if(this.colour== 6) {
+		if((this.colour).equals(ObjectEnum.LIGHT_BLUE)) {
 			return true;
 		}
 		return false;
 		
 	}
 	
-	*/
+	
 	
 	
 	

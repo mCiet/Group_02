@@ -16,20 +16,7 @@ public class Bag {
 		
 	}
 	
-	private void BagGeneration() {
-		int i=1;
-		while( i<23 ) {
-			tiles.add(new Tiles(ObjectEnum.PINK));
-			tiles.add(new Tiles(ObjectEnum.BLUE));
-			tiles.add(new Tiles(ObjectEnum.LIGHT_BLUE));
-			tiles.add(new Tiles(ObjectEnum.GREEN));
-			tiles.add(new Tiles(ObjectEnum.WHITE));
-			tiles.add(new Tiles(ObjectEnum.YELLOW));
-			i++;
-		}
-		
-	}
-
+	
 	public Tiles RandGeneration() {
 		
 		Collections.shuffle(tiles);
@@ -46,7 +33,20 @@ public class Bag {
 		
 	}
 		
+		private void BagGeneration() {
+		int i=1;
+		while( i<23 ) {
+			tiles.add(new Tiles(ObjectEnum.PINK));
+			tiles.add(new Tiles(ObjectEnum.BLUE));
+			tiles.add(new Tiles(ObjectEnum.LIGHT_BLUE));
+			tiles.add(new Tiles(ObjectEnum.GREEN));
+			tiles.add(new Tiles(ObjectEnum.WHITE));
+			tiles.add(new Tiles(ObjectEnum.YELLOW));
+			i++;
+		}
 		
+	}
+
 	
 	
 }

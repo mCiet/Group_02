@@ -10,5 +10,7 @@ public class Player {
 		this.ID = c;
 		c++;
 	}
+	
+	
 
 }

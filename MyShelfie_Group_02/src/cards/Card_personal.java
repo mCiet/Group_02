@@ -13,4 +13,6 @@ public class Card_personal {
 	
 	
 	
+	
+	
 }

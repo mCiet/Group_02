@@ -10,8 +10,8 @@ public class Card_common {
 	//private Tiles[][] shelf;
 	Tiles [][] shelf = new Tiles[6][5];
 
-	public Card_common(Shelf shelf) {
-		//this.shelf = shelf;
+	public Card_common(Tiles[][] shelf) { //passo da main la matrice di tiles al posto che direttamente la shelf
+		this.shelf = shelf;
 	}
 	
 	public boolean checkCommonGoals(int nGoals) {

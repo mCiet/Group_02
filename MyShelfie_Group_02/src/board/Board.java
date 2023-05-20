@@ -207,6 +207,12 @@ public class Board {
 				System.out.println(table[k][0].gObject()+ " "+ table[k][1].gObject()+ " "+ table[k][2].gObject()+ " " + table[k][3].gObject()+ " " + table[k][4].gObject()+ " "+table[k][5].gObject()+ " "+ table[k][6].gObject()+ " "+ table[k][7].gObject()+ " "+ table[k][8].gObject()+ " ");
 		}
 	}
+	
+	public Tiles getTiles(int i, int j) {
+		Tiles tiles;
+		tiles = table[i][j];
+		return tiles;
+	}
 		
 		
 	}

@@ -30,7 +30,7 @@ public class Card_common {
 					if(cont==2)
 						verifica= true;
 				}
-				return verifica; // se nessun ciclo trova la corrispondenza con l'obbiettivo comune restituisce false
+				break; // se nessun ciclo trova la corrispondenza con l'obbiettivo comune restituisce false
 
 			case 2:
 				int i1=0,k1=0;
@@ -51,7 +51,7 @@ public class Card_common {
 				if(cont1==2) {
 					verifica= true;
 				}
-				return verifica;
+				break;
 				
 			case 3:
 				// da chiarire cosa chiede l'obbiettivo 
@@ -61,7 +61,7 @@ public class Card_common {
 				// da chiarire cosa chieda nello specifico l'obbiettivo
 				
 				
-			case 5: 
+			case 5: // da corregere non funziona se colori alternati si ripetono
 				int contTipi4=1;
 				int contCol=0;
 				boolean cNotFull=false;
@@ -85,7 +85,7 @@ public class Card_common {
 						verifica= true;
 					}
 				}
-				return verifica;
+				break;
 			case 6:
 				int i5=0,k5=0;
 				int cont5=0;
@@ -105,9 +105,9 @@ public class Card_common {
 				if(cont5==2) {
 					verifica= true;
 				}
-				return verifica;
+				break;
 			
-			case 7:
+			case 7: // da corregere non funziona se colori alternati si ripetono
 				int contTipi6=1;
 				int contRig=0;
 				boolean rNotFull=false;
@@ -132,21 +132,21 @@ public class Card_common {
 					verifica= true;
 				}
 				
-				return verifica;
+				break;
 			
 			case 8:
 				if((this.shelf[0][0]).equals(this.shelf[0][4]) && (this.shelf[0][4]).equals(this.shelf[5][4]) && (this.shelf[5][4]).equals(this.shelf[5][0])) {
 					verifica=true;
 				}
-				return verifica;
+				break;
 				
 			case 9:
 				ObjectEnum colour;
 				int pink=0,yellow=0,blue=0,light_blue=0,green=0,white=0;
 				
-				for (int k=0; k<6; k++) { 
-					for(int i=0; i<5; i++) {
-						colour=this.shelf[k][i].gObject();
+				for (int k8=0; k8<6; k8++) { 
+					for(int i8=0; i8<5; i8++) {
+						colour=this.shelf[k8][i8].gObject();
 						switch(colour) {
 						case PINK:
 							pink++;
@@ -182,10 +182,49 @@ public class Card_common {
 				else if(yellow>=8) {
 					verifica=true;
 				}
-				return verifica;
+				break;
 				
 			case 10:
+				for (int k9=0; k9<4; k9++) { 
+					for(int i9=0; i9<3; i9++) {
+						if((this.shelf[i9][k9]).equals(this.shelf[i9][k9+2]) && (this.shelf[i9][k9+2]).equals(this.shelf[i9+1][k9+1]) && (this.shelf[i9+1][k9+1]).equals(this.shelf[i9+2][k9]) && (this.shelf[i9+2][k9]).equals(this.shelf[i9+2][k9+2])) {
+							verifica=true;
+						}
+					}
+					if(verifica) {
+						break;
+					}
+				}
+				break;		
 				
+			case 11:
+				for (int k10=0; k10<2; k10++) { 
+					if((this.shelf[k10][0]).equals(this.shelf[k10+1][1]) && (this.shelf[k10+1][1]).equals(this.shelf[k10+2][2]) && (this.shelf[k10+2][2]).equals(this.shelf[k10+3][3]) && (this.shelf[k10+3][3]).equals(this.shelf[k10+4][4])) {
+						verifica=true;	
+						break;
+					}
+					else if((this.shelf[k10][4]).equals(this.shelf[k10+1][3]) && (this.shelf[k10+1][3]).equals(this.shelf[k10+2][2]) && (this.shelf[k10+2][2]).equals(this.shelf[k10+3][1]) && (this.shelf[k10+3][1]).equals(this.shelf[k10+4][0])) {
+						verifica=true;
+						break;
+					}
+					
+				}
+				break;
+			
+			case 12:
+				for (int k11=0; k11<2; k11++) { 
+					if( !(this.shelf[k11][0]).isEmpty() && !(this.shelf[k11+1][1]).isEmpty() && !(this.shelf[k11+2][2]).isEmpty() && !(this.shelf[k11+3][3]).isEmpty() && !(this.shelf[k11+4][4]).isEmpty()) {
+						verifica=true;
+						break;
+					}
+					else if( !(this.shelf[k11][4]).isEmpty() && !(this.shelf[k11+1][3]).isEmpty() && !(this.shelf[k11+2][2]).isEmpty() && !(this.shelf[k11+3][1]).isEmpty() && !(this.shelf[k11+4][0]).isEmpty())  {
+						verifica=true;
+						break;
+					}
+					
+				}
+				break;
+		
 		}
 
 		return verifica;

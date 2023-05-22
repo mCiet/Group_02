@@ -1,5 +1,8 @@
 /board/
 /bookshelf/
+/cards/
+/gameController/
 /main/
 /player/
-/cards/
+/tiles/
+/tokens/

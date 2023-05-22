@@ -14,6 +14,19 @@ public class Tiles {
 		
 	}
 	
+	public boolean equals(Tiles tiles) {
+		if((this.colour).equals(tiles.colour)) {
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean isEmpty() {
+		if((this.colour).equals(ObjectEnum.EMPTY)) {
+			return true;
+		}
+		return false;
+	}
 
 
 	public boolean isPink () {

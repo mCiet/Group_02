@@ -50,6 +50,7 @@ public class Main {
 			//secondo me sarebbe meglio utilizzare una sottofunzione per questo
 			int nTessere;
 			int c;
+			
 			//manca controllo tessere
 			do{
 				System.out.println("Quante tessere vuoi prendere? (da 1 a 3)");

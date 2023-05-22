@@ -85,7 +85,34 @@ public class Card_common {
 					}
 				}
 				return verifica;
-			//case 6:
+			case 6:
+				int contC=0;
+				boolean cNotFull2=false;
+				boolean allDiff=true;
+				for(int k5=0; k5 <5; k5++) {
+					contTipi=1;
+					for(int i5=0; i5<6;i5++) {
+						if((this.shelf[i5][k5]).isEmpty()){
+							cNotFull=true;
+						}
+					}
+					if(!cNotFull2) {
+						int j5=0;
+						while( j5<5 && allDiff) {
+							if((this.shelf[j5][k5]).equals(this.shelf[j5+1][k5])){
+								allDiff=false;								
+							}
+							j5++;
+						}
+						if(allDiff)
+							contC++;
+					}
+					
+				}
+				if(contC>=2) {
+						verifica= true;
+					}
+				return verifica;
 				
 		}
 

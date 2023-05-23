@@ -9,22 +9,28 @@ import bookshelf.*;
 import cards.*
 ;
 public class Main {
+	
+	public static boolean isNumeric(String str) {
+	    if (str == null || str.length() == 0) {
+	        return false;
+	    }
+	    try {
+	        double d = Double.parseDouble(str);
+	    } catch (NumberFormatException e) {
+	        return false;
+	    }
+	    return true;
+	}
 
 	public static void main(String[] args) {
-		Scanner scn = new Scanner(System.in);
-		int nGiocatori=0;
-		int f =0;
-		do {
-			System.out.println("Inserire numero di giocatori da 2 a 4 : ");
-			nGiocatori=scn.nextInt();
-			System.out.println(nGiocatori);
-			
-		}while(nGiocatori < 2 || nGiocatori > 4  );
 		
-		scn.close();
+		grafic.FrontEnd.Window(args);
 		
-		// passaggio del numero dei giocatori per creare soggiorno 
-			Board livingroom = new Board(nGiocatori);
+		
+		
+		
+		/** passaggio del numero dei giocatori per creare soggiorno 
+		//	Board livingroom = new Board(nGiocatori);
 			Bag bag = new Bag();
 			
 			livingroom.boardFill(bag);
@@ -81,6 +87,7 @@ public class Main {
 		
 
 			Card_common card = new Card_common(s1.getShelf());//prova per vedere se funziona metodo getshelf per richiamare le carte comuni
+	**/
 	}
 
 }

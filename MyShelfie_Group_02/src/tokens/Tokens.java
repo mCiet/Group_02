@@ -2,8 +2,8 @@ package tokens;
 
 public class Tokens {
 	
-	private int complete;
 	private int score;
+	
 	
 	
 	public Tokens(int score) {
@@ -49,7 +49,11 @@ public class Tokens {
 		return false;
 	}
 	
-	public int TokenHierarchy(int complete) {
+	
+	
+	public int TokenHierarchy( int nPlayer) {
+		
+		
 	/*
 	 * ho provato a creare la gerarchia di come vengono assegnati i token, lo schema si basa sul fatto che il primo che completa
 	 * una common goal card, guadagna il token più alto, quello da 8, per poi assegnare gli altri in ordine decrescente 
@@ -57,37 +61,34 @@ public class Tokens {
 	 * ho pensato di usare uno switch, ditemi se si può fare in un altro modo o se si può modificare qualcosa,
 	 * se è da cancellare fate pure
 	 */
-		switch (complete) {
+		
+		
+		switch (nPlayer) {
+		
+		case 0:
+		   
+			    return this.score=8;	
+
 		
 		case 1:
-			for(int i = 0; i<4; i++) {
-				return this.score=8;
-				
-							
-			}
-			break;
+			
+				return this.score=6;
+			
 		
 		case 2:
-			for(int i=0; i<3; i++) {
-				return this.score=6;
-			}
-			break;
-		
-		case 3:
-			for(int i=0; i<2; i++) {
 				return this.score=4;
-			}
-			break;
 			
-		case 4:
-			for(int i=0; i<1;i++) {
+			
+		case 3:
+			
 				return this.score=2;
-			}
-			break;
+		
+
 		
 		
 		}
 		return 1;
+	
 		
 		
 	}

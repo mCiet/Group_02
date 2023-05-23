@@ -1,2 +1,10 @@
+/board/
+/bookshelf/
+/cards/
+/gameController/
 /grafic/
 /main/
+/module-info.class
+/player/
+/tiles/
+/tokens/

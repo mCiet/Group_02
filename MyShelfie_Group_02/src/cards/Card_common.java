@@ -6,230 +6,301 @@ import tiles.*;
 
 
 public class Card_common {
-	
+
 	Tiles [][] shelf = new Tiles[6][5];
 
 	public Card_common(Tiles[][] shelf) { //passo da main la matrice di tiles al posto che direttamente la shelf
 		this.shelf = shelf;
 	}
-		
+
 
 	public boolean checkCommonGoals(int nGoals) {
 		boolean verifica=false;
 		switch (nGoals) {
-			// controllo in base al numero di obbiettivo comune se è stato raggiunto 
-			//--> ritorna true e false se è stato raggiunto o no
-			case 1: 
-				int cont=0;
-				for (int k=0; k<5; k++) { // il ciclo controlla una riga e colonna in meno perchè sarebbe inutile riga 5 e colonna 4 già controllate con riga e colonan precendente
-					for(int i=0; i<4; i++) {//
-						if((this.shelf[k][i]).equals(this.shelf[k][i+1]) && (this.shelf[k][i+1]).equals(this.shelf[k+1][i]) && (this.shelf[k+1][i]).equals(this.shelf[k+1][i+1]) ) {
-							cont++;
-						}
+		// controllo in base al numero di obbiettivo comune se è stato raggiunto 
+		//--> ritorna true e false se è stato raggiunto o no
+		case 1: 
+			int cont=0;
+			for (int k=0; k<5; k++) { // il ciclo controlla una riga e colonna in meno perchè sarebbe inutile riga 5 e colonna 4 già controllate con riga e colonan precendente
+				for(int i=0; i<4; i++) {//
+					if((this.shelf[k][i]).equals(this.shelf[k][i+1]) && (this.shelf[k][i+1]).equals(this.shelf[k+1][i]) && (this.shelf[k+1][i]).equals(this.shelf[k+1][i+1]) ) {
+						cont++;
 					}
-					if(cont==2)
-						verifica= true;
 				}
-				break; // se nessun ciclo trova la corrispondenza con l'obbiettivo comune restituisce false
+				if(cont==2)
+					verifica= true;
+			}
+			break; // se nessun ciclo trova la corrispondenza con l'obbiettivo comune restituisce false
 
-			case 2:
-				int i1=0,k1=0;
-				int cont1=0;
-				boolean uguali1=false;
-				while(i1<5 && cont1 <2) {
-					while(k1<5 && !uguali1) {
-						if((this.shelf[k1][i1]).equals(this.shelf[k1+1][i1]) ) {
-							uguali1=true;
-						}
-						k1++;
+		case 2:
+			int i1=0,k1=0;
+			int cont1=0;
+			boolean uguali1=false;
+			while(i1<5 && cont1 <2) {
+				while(k1<5 && !uguali1) {
+					if((this.shelf[k1][i1]).equals(this.shelf[k1+1][i1]) ) {
+						uguali1=true;
 					}
-					i1++;
-					if(!uguali1) {
-						cont1++;
+					k1++;
+				}
+				i1++;
+				if(!uguali1) {
+					cont1++;
+				}
+			}
+			if(cont1==2) {
+				verifica= true;
+			}
+			break;
+
+		case 3:
+			// da chiarire cosa chiede l'obbiettivo 
+
+
+		case 4:	
+			// da chiarire cosa chieda nello specifico l'obbiettivo
+
+
+		case 5: 
+			ObjectEnum colour4;
+			boolean pink=false,yellow=false,blue=false,light_blue=false,green=false,white=false;
+			int contTipi4=0;
+			int contCol=0;
+			boolean cNotFull=false;
+			for(int k4=0; k4 <5; k4++) {
+				contTipi4=1;
+				for(int i4=0; i4<6;i4++) {
+					if((this.shelf[i4][k4]).isEmpty()){
+						cNotFull=true;
 					}
 				}
-				if(cont1==2) {
-					verifica= true;
-				}
-				break;
-				
-			case 3:
-				// da chiarire cosa chiede l'obbiettivo 
-				
-				
-			case 4:	
-				// da chiarire cosa chieda nello specifico l'obbiettivo
-				
-				
-			case 5: // da corregere non funziona se colori alternati si ripetono
-				int contTipi4=1;
-				int contCol=0;
-				boolean cNotFull=false;
-				for(int k4=0; k4 <5; k4++) {
-					contTipi4=1;
-					for(int i4=0; i4<6;i4++) {
-						if((this.shelf[i4][k4]).isEmpty()){
-							cNotFull=true;
-						}
-					}
-					if(!cNotFull) {
-						for(int j4=0; j4<5;j4++) {
-							if((this.shelf[j4][k4]).equals(this.shelf[j4+1][k4])){
-								contTipi4++;								
-							}
-						}
-						if(contTipi4<=3)
-							contCol++;
-					}
-					if(contCol==3) {
-						verifica= true;
-					}
-				}
-				break;
-			case 6:
-				int i5=0,k5=0;
-				int cont5=0;
-				boolean uguali5=false;
-				while(i5<6 && cont5 <2) {
-					while(k5<4 && !uguali5) {
-						if((this.shelf[i5][k5]).equals(this.shelf[i5][k5+1]) ) {
-							uguali5=true;
-						}
-						k5++;
-					}
-					i5++;
-					if(!uguali5) {
-						cont5++;
-					}
-				}
-				if(cont5==2) {
-					verifica= true;
-				}
-				break;
-			
-			case 7: // da corregere non funziona se colori alternati si ripetono
-				int contTipi6=1;
-				int contRig=0;
-				boolean rNotFull=false;
-				for(int k6=0; k6 <6; k6++) {
-					contTipi6=1;
-					for(int i6=0; i6<5;i6++) {
-						if((this.shelf[k6][i6]).isEmpty()){
-							rNotFull=true;
-						}
-					}
-					if(!rNotFull) {
-						for(int j6=0; j6<4;j6++) {
-							if((this.shelf[k6][j6]).equals(this.shelf[k6][j6+1])){
-								contTipi6++;								
-							}
-						}
-						if(contTipi6<=3)
-							contRig++;
-					}
-				}
-				if(contRig==4) {
-					verifica= true;
-				}
-				
-				break;
-			
-			case 8:
-				if((this.shelf[0][0]).equals(this.shelf[0][4]) && (this.shelf[0][4]).equals(this.shelf[5][4]) && (this.shelf[5][4]).equals(this.shelf[5][0])) {
-					verifica=true;
-				}
-				break;
-				
-			case 9:
-				ObjectEnum colour;
-				int pink=0,yellow=0,blue=0,light_blue=0,green=0,white=0;
-				
-				for (int k8=0; k8<6; k8++) { 
-					for(int i8=0; i8<5; i8++) {
-						colour=this.shelf[k8][i8].gObject();
-						switch(colour) {
+				if(!cNotFull) {
+					for(int j4=0; j4<6;j4++) {
+
+
+						colour4=this.shelf[j4][k4].gObject();
+						switch(colour4) {
 						case PINK:
-							pink++;
+							if(!pink){
+								pink=true;
+								contTipi4++;
+							}		
 						case GREEN:
-							green++;
+							if(!green){
+								pink=true;
+								contTipi4++;
+							}
 						case BLUE:
-							blue++;
+							if(!blue){
+								pink=true;
+								contTipi4++;
+							}
 						case WHITE:
-							white++;
+							if(!white){
+								pink=true;
+								contTipi4++;
+							}
 						case YELLOW:
-							yellow++;
+							if(!yellow){
+								pink=true;
+								contTipi4++;
+							}
 						case LIGHT_BLUE:
-							light_blue++;
-						case EMPTY:	
-						}
+							if(!pink){
+								pink=true;
+								contTipi4++;
+							}
+						}		
+					}
+					if(contTipi4<=3)
+						contCol++;
+				}
+				if(contCol==3) {
+					verifica= true;
+				}
+			}
+			break;
+		case 6:
+			int i5=0,k5=0;
+			int cont5=0;
+			boolean uguali5=false;
+			while(i5<6 && cont5 <2) {
+				while(k5<4 && !uguali5) {
+					if((this.shelf[i5][k5]).equals(this.shelf[i5][k5+1]) ) {
+						uguali5=true;
+					}
+					k5++;
+				}
+				i5++;
+				if(!uguali5) {
+					cont5++;
+				}
+			}
+			if(cont5==2) {
+				verifica= true;
+			}
+			break;
+
+		case 7: 
+			int contTipi6=1;
+			int contRig=0;
+			boolean rNotFull=false;
+			ObjectEnum colour6;
+			pink=false;
+			yellow=false;
+			blue=false;
+			light_blue=false;
+			green=false;
+			white=false;
+			for(int k6=0; k6 <6; k6++) {
+				contTipi6=1;
+				for(int i6=0; i6<5;i6++) {
+					if((this.shelf[k6][i6]).isEmpty()){
+						rNotFull=true;
 					}
 				}
-				if(pink>=8) {
-					verifica= true;	
-				}
-				else if(green>=8) {
-					verifica=true;
-				}
-				else if(blue>=8) {
-					verifica=true;
-				}
-				else if(light_blue>=8) {
-					verifica=true;
-				}
-				else if(white>=8) {
-					verifica=true;
-				}
-				else if(yellow>=8) {
-					verifica=true;
-				}
-				break;
-				
-			case 10:
-				for (int k9=0; k9<4; k9++) { 
-					for(int i9=0; i9<3; i9++) {
-						if((this.shelf[i9][k9]).equals(this.shelf[i9][k9+2]) && (this.shelf[i9][k9+2]).equals(this.shelf[i9+1][k9+1]) && (this.shelf[i9+1][k9+1]).equals(this.shelf[i9+2][k9]) && (this.shelf[i9+2][k9]).equals(this.shelf[i9+2][k9+2])) {
-							verifica=true;
-						}
+				if(!rNotFull) {
+					for(int j6=0; j6<5;j6++) {
+						colour6=this.shelf[k6][j6].gObject();
+						switch(colour6) {
+						case PINK:
+							if(!pink){
+								pink=true;
+								contTipi6++;
+							}		
+						case GREEN:
+							if(!green){
+								pink=true;
+								contTipi6++;
+							}
+						case BLUE:
+							if(!blue){
+								pink=true;
+								contTipi6++;
+							}
+						case WHITE:
+							if(!white){
+								pink=true;
+								contTipi6++;
+							}
+						case YELLOW:
+							if(!yellow){
+								pink=true;
+								contTipi6++;
+							}
+						case LIGHT_BLUE:
+							if(!pink){
+								pink=true;
+								contTipi6++;
+							}
+						}						
 					}
-					if(verifica) {
-						break;
+					if(contTipi6<=3)
+						contRig++;
+				}
+			}
+			if(contRig==4) {
+				verifica= true;
+			}
+
+			break;
+
+		case 8:
+			if((this.shelf[0][0]).equals(this.shelf[0][4]) && (this.shelf[0][4]).equals(this.shelf[5][4]) && (this.shelf[5][4]).equals(this.shelf[5][0])) {
+				verifica=true;
+			}
+			break;
+
+		case 9:
+			ObjectEnum colour;
+			int pink8=0,yellow8=0,blue8=0,light_blue8=0,green8=0,white8=0;
+
+			for (int k8=0; k8<6; k8++) { 
+				for(int i8=0; i8<5; i8++) {
+					colour=this.shelf[k8][i8].gObject();
+					switch(colour) {
+					case PINK:
+						pink8++;
+					case GREEN:
+						green8++;
+					case BLUE:
+						blue8++;
+					case WHITE:
+						white8++;
+					case YELLOW:
+						yellow8++;
+					case LIGHT_BLUE:
+						light_blue8++;
+					case EMPTY:	
 					}
 				}
-				break;		
-				
-			case 11:
-				for (int k10=0; k10<2; k10++) { 
-					if((this.shelf[k10][0]).equals(this.shelf[k10+1][1]) && (this.shelf[k10+1][1]).equals(this.shelf[k10+2][2]) && (this.shelf[k10+2][2]).equals(this.shelf[k10+3][3]) && (this.shelf[k10+3][3]).equals(this.shelf[k10+4][4])) {
-						verifica=true;	
-						break;
-					}
-					else if((this.shelf[k10][4]).equals(this.shelf[k10+1][3]) && (this.shelf[k10+1][3]).equals(this.shelf[k10+2][2]) && (this.shelf[k10+2][2]).equals(this.shelf[k10+3][1]) && (this.shelf[k10+3][1]).equals(this.shelf[k10+4][0])) {
+			}
+			if(pink8>=8) {
+				verifica= true;	
+			}
+			else if(green8>=8) {
+				verifica=true;
+			}
+			else if(blue8>=8) {
+				verifica=true;
+			}
+			else if(light_blue8>=8) {
+				verifica=true;
+			}
+			else if(white8>=8) {
+				verifica=true;
+			}
+			else if(yellow8>=8) {
+				verifica=true;
+			}
+			break;
+
+		case 10:
+			for (int k9=0; k9<4; k9++) { 
+				for(int i9=0; i9<3; i9++) {
+					if((this.shelf[i9][k9]).equals(this.shelf[i9][k9+2]) && (this.shelf[i9][k9+2]).equals(this.shelf[i9+1][k9+1]) && (this.shelf[i9+1][k9+1]).equals(this.shelf[i9+2][k9]) && (this.shelf[i9+2][k9]).equals(this.shelf[i9+2][k9+2])) {
 						verifica=true;
-						break;
 					}
-					
 				}
-				break;
-			
-			case 12:
-				for (int k11=0; k11<2; k11++) { 
-					if( !(this.shelf[k11][0]).isEmpty() && !(this.shelf[k11+1][1]).isEmpty() && !(this.shelf[k11+2][2]).isEmpty() && !(this.shelf[k11+3][3]).isEmpty() && !(this.shelf[k11+4][4]).isEmpty()) {
-						verifica=true;
-						break;
-					}
-					else if( !(this.shelf[k11][4]).isEmpty() && !(this.shelf[k11+1][3]).isEmpty() && !(this.shelf[k11+2][2]).isEmpty() && !(this.shelf[k11+3][1]).isEmpty() && !(this.shelf[k11+4][0]).isEmpty())  {
-						verifica=true;
-						break;
-					}
-					
+				if(verifica) {
+					break;
 				}
-				break;
-		
+			}
+			break;		
+
+		case 11:
+			for (int k10=0; k10<2; k10++) { 
+				if((this.shelf[k10][0]).equals(this.shelf[k10+1][1]) && (this.shelf[k10+1][1]).equals(this.shelf[k10+2][2]) && (this.shelf[k10+2][2]).equals(this.shelf[k10+3][3]) && (this.shelf[k10+3][3]).equals(this.shelf[k10+4][4])) {
+					verifica=true;	
+					break;
+				}
+				else if((this.shelf[k10][4]).equals(this.shelf[k10+1][3]) && (this.shelf[k10+1][3]).equals(this.shelf[k10+2][2]) && (this.shelf[k10+2][2]).equals(this.shelf[k10+3][1]) && (this.shelf[k10+3][1]).equals(this.shelf[k10+4][0])) {
+					verifica=true;
+					break;
+				}
+
+			}
+			break;
+
+		case 12:
+			for (int k11=0; k11<2; k11++) { 
+				if( !(this.shelf[k11][0]).isEmpty() && !(this.shelf[k11+1][1]).isEmpty() && !(this.shelf[k11+2][2]).isEmpty() && !(this.shelf[k11+3][3]).isEmpty() && !(this.shelf[k11+4][4]).isEmpty()) {
+					verifica=true;
+					break;
+				}
+				else if( !(this.shelf[k11][4]).isEmpty() && !(this.shelf[k11+1][3]).isEmpty() && !(this.shelf[k11+2][2]).isEmpty() && !(this.shelf[k11+3][1]).isEmpty() && !(this.shelf[k11+4][0]).isEmpty())  {
+					verifica=true;
+					break;
+				}
+
+			}
+			break;
+
 		}
 
 		return verifica;
 	}
-	
-	
-	
+
+
+
 }

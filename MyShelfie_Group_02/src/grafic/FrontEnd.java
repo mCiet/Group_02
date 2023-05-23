@@ -14,11 +14,12 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import main.Main;
 import javax.swing.JLabel;
+import java.awt.Font;
 
 public class FrontEnd extends JFrame {
 
 	private JPanel contentPane;
-	private JTable table;
+	private JTable tBoard;
 	private JTextField txtNGiocatori;
 
 	/**
@@ -65,12 +66,13 @@ public class FrontEnd extends JFrame {
 		txtNGiocatori.setColumns(10);
 		
 		JLabel lblProva = new JLabel("");
-		lblProva.setBounds(46, 146, 49, 14);
+		lblProva.setFont(new Font("Tahoma", Font.PLAIN, 9));
+		lblProva.setBounds(10, 144, 112, 59);
 		panel.add(lblProva);
 		
-		table = new JTable();
-		table.setBounds(141, 36, 543, 503);
-		contentPane.add(table);
+		tBoard = new JTable(9,9);
+		tBoard.setBounds(141, 36, 543, 503);
+		contentPane.add(tBoard);
 		
 		JButton btnAvvio = new JButton("AVVIA");
 		btnAvvio.setBounds(23, 99, 89, 23);
@@ -88,12 +90,19 @@ public class FrontEnd extends JFrame {
 			
 			public void actionPerformed(ActionEvent e) {
 				String valoreTesto= txtNGiocatori.getText();
+				if(Main.isNumeric(valoreTesto)) {
+					nGiocatori = Integer.parseInt(valoreTesto);
+					if(nGiocatori>=2 && nGiocatori<=4) {
+						lblProva.setText(""+ nGiocatori);
+						
+						
+					}else {
+						lblProva.setText("<html>NSERIRE UN NUMERO <br> TRA 2 E 4 </html>");
+					}
+				}else {
+					lblProva.setText("INSERIRE UN NUMERO ");
+				}
 				
-				//	if(!Main.isNumeric(valoreTesto)) {
-				//		lblProva.setText("<html>INSERIRE UN NUMERO <br> COMPRESO TRA 2 E 4 </html>");
-				//	}
-				nGiocatori = Integer.parseInt(valoreTesto);
-				lblProva.setText(""+ nGiocatori);
 				
 				
 			}

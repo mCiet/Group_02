@@ -41,7 +41,6 @@ public enum personal_goals {
 		{ObjectEnum.EMPTY,ObjectEnum.EMPTY,ObjectEnum.EMPTY,ObjectEnum.EMPTY,ObjectEnum.EMPTY},
 		{ObjectEnum.EMPTY,ObjectEnum.YELLOW,ObjectEnum.EMPTY,ObjectEnum.BLUE,ObjectEnum.EMPTY},
 		{ObjectEnum.EMPTY,ObjectEnum.EMPTY,ObjectEnum.EMPTY,ObjectEnum.EMPTY,ObjectEnum.EMPTY}} ),
-	//da finire ho solo copiato la riga sopra
 	GOALS7(new ObjectEnum[][]{
 		{ObjectEnum.GREEN, ObjectEnum.EMPTY, ObjectEnum.EMPTY, ObjectEnum.EMPTY, ObjectEnum.EMPTY},
 		{ObjectEnum.EMPTY,ObjectEnum.EMPTY,ObjectEnum.EMPTY,ObjectEnum.BLUE,ObjectEnum.EMPTY},
@@ -87,12 +86,12 @@ public enum personal_goals {
 	
 	private final ObjectEnum[][] personal_goals;
 
+	public ObjectEnum[][] getPersonal_goals() {
+		return personal_goals;
+	}
+
 	private personal_goals(ObjectEnum[][] personal_goals) {
 		this.personal_goals = personal_goals;
 	}
 	
-	public ObjectEnum[][] gPersGoal(){
-		return personal_goals;
-		
-	}
 }

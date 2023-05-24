@@ -16,6 +16,7 @@ public class Card_common {
 
 	public boolean checkCommonGoals(int nGoals) {
 		boolean verifica=false;
+		boolean pink=false,yellow=false,blue=false,light_blue=false,green=false,white=false;
 		switch (nGoals) {
 		// controllo in base al numero di obbiettivo comune se è stato raggiunto 
 		//--> ritorna true e false se è stato raggiunto o no
@@ -33,18 +34,73 @@ public class Card_common {
 			break; // se nessun ciclo trova la corrispondenza con l'obbiettivo comune restituisce false
 
 		case 2:
+			ObjectEnum colour1;
+			int contTipi1;
 			int i1=0,k1=0;
 			int cont1=0;
+			int contCol1=0;
 			boolean uguali1=false;
 			while(i1<5 && cont1 <2) {
-				while(k1<5 && !uguali1) {
-					if((this.shelf[k1][i1]).equals(this.shelf[k1+1][i1]) ) {
-						uguali1=true;
-					}
+				pink=false;
+				yellow=false;
+				blue=false;
+				light_blue=false;
+				green=false;
+				white=false;
+				contTipi1=0;
+				while(k1<6) {
+					colour1=this.shelf[k1][i1].gObject();
+					switch(colour1) {
+					case PINK:
+						if(!pink){
+							pink=true;
+							contTipi1++;
+						}else {
+							break;
+						}
+					case GREEN:
+						if(!green){
+							pink=true;
+							contTipi1++;
+						}else {
+							break;
+						}
+					case BLUE:
+						if(!blue){
+							pink=true;
+							contTipi1++;
+						}else {
+							break;
+						}
+					case WHITE:
+						if(!white){
+							pink=true;
+							contTipi1++;
+						}else {
+							break;
+						}
+					case YELLOW:
+						if(!yellow){
+							pink=true;
+							contTipi1++;
+						}else {
+							break;
+						}
+					case LIGHT_BLUE:
+						if(!pink){
+							pink=true;
+							contTipi1++;
+						}else {
+							break;
+						}
+					case EMPTY:
+						break;
+					}	
+
 					k1++;
 				}
 				i1++;
-				if(!uguali1) {
+				if(contTipi1==6) {
 					cont1++;
 				}
 			}
@@ -63,7 +119,6 @@ public class Card_common {
 
 		case 5: 
 			ObjectEnum colour4;
-			boolean pink=false,yellow=false,blue=false,light_blue=false,green=false,white=false;
 			int contTipi4=0;
 			int contCol=0;
 			boolean cNotFull=false;
@@ -75,6 +130,12 @@ public class Card_common {
 					}
 				}
 				if(!cNotFull) {
+					pink=false;
+					yellow=false;
+					blue=false;
+					light_blue=false;
+					green=false;
+					white=false;
 					for(int j4=0; j4<6;j4++) {
 
 
@@ -121,20 +182,73 @@ public class Card_common {
 			}
 			break;
 		case 6:
+			ObjectEnum colour5;
+			int contTipi5;
 			int i5=0,k5=0;
 			int cont5=0;
-			boolean uguali5=false;
 			while(i5<6 && cont5 <2) {
-				while(k5<4 && !uguali5) {
-					if((this.shelf[i5][k5]).equals(this.shelf[i5][k5+1]) ) {
-						uguali5=true;
-					}
+				pink=false;
+				yellow=false;
+				blue=false;
+				light_blue=false;
+				green=false;
+				white=false;
+				contTipi5=0;
+				while(k5<5 && cont5<2) {
+					colour5=this.shelf[i5][k5].gObject();
+					switch(colour5) {
+					case PINK:
+						if(!pink){
+							pink=true;
+							contTipi5++;
+						}else {
+							break;
+						}
+					case GREEN:
+						if(!green){
+							pink=true;
+							contTipi5++;
+						}else {
+							break;
+						}
+					case BLUE:
+						if(!blue){
+							pink=true;
+							contTipi5++;
+						}else {
+							break;
+						}
+					case WHITE:
+						if(!white){
+							pink=true;
+							contTipi5++;
+						}else {
+							break;
+						}
+					case YELLOW:
+						if(!yellow){
+							pink=true;
+							contTipi5++;
+						}else {
+							break;
+						}
+					case LIGHT_BLUE:
+						if(!pink){
+							pink=true;
+							contTipi5++;
+						}else {
+							break;
+						}
+					case EMPTY:
+						break;
+					}	
 					k5++;
 				}
-				i5++;
-				if(!uguali5) {
+				if(contTipi5==5) {
 					cont5++;
 				}
+				i5++;
+
 			}
 			if(cont5==2) {
 				verifica= true;

@@ -1,5 +1,14 @@
 /grafic/
 /main/
 /cards/
+<<<<<<< Updated upstream
 /tokens/
 /board/
+=======
+/board/
+/bookshelf/
+/gameController/
+/player/
+/tiles/
+/tokens/
+>>>>>>> Stashed changes

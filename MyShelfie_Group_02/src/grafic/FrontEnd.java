@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 import main.Main;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Color;
 
 public class FrontEnd extends JFrame {
 
@@ -22,9 +23,7 @@ public class FrontEnd extends JFrame {
 	private JTable tBoard;
 	private JTextField txtNGiocatori;
 
-	/**
-	 * Launch the application.
-	 */
+	
 	public static void Window(String[] args) {
 		
 		EventQueue.invokeLater(new Runnable() {
@@ -55,7 +54,7 @@ public class FrontEnd extends JFrame {
 		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(10, 36, 132, 502);
+		panel.setBounds(10, 36, 132, 516);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
@@ -71,8 +70,12 @@ public class FrontEnd extends JFrame {
 		panel.add(lblProva);
 		
 		tBoard = new JTable(9,9);
-		tBoard.setBounds(141, 36, 543, 503);
+		tBoard.setBackground(new Color(255, 255, 255));
+		tBoard.setBorder(null);
+		tBoard.setForeground(new Color(0, 0, 0));
+		tBoard.setBounds(152, 25, 603, 516);
 		contentPane.add(tBoard);
+        
 		
 		JButton btnAvvio = new JButton("AVVIA");
 		btnAvvio.setBounds(23, 99, 89, 23);
@@ -93,6 +96,7 @@ public class FrontEnd extends JFrame {
 				if(Main.isNumeric(valoreTesto)) {
 					nGiocatori = Integer.parseInt(valoreTesto);
 					if(nGiocatori>=2 && nGiocatori<=4) {
+						tBoard.setRowHeight(57);
 						lblProva.setText(""+ nGiocatori);
 						
 						

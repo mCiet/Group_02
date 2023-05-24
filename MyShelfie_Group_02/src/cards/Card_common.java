@@ -124,6 +124,7 @@ public class Card_common {
 			boolean cNotFull=false;
 			for(int k4=0; k4 <5; k4++) {
 				contTipi4=1;
+				cNotFull=false;
 				for(int i4=0; i4<6;i4++) {
 					if((this.shelf[i4][k4]).isEmpty()){
 						cNotFull=true;
@@ -148,27 +149,27 @@ public class Card_common {
 							}		
 						case GREEN:
 							if(!green){
-								pink=true;
+								green=true;
 								contTipi4++;
 							}
 						case BLUE:
 							if(!blue){
-								pink=true;
+								blue=true;
 								contTipi4++;
 							}
 						case WHITE:
 							if(!white){
-								pink=true;
+								white=true;
 								contTipi4++;
 							}
 						case YELLOW:
 							if(!yellow){
-								pink=true;
+								yellow=true;
 								contTipi4++;
 							}
 						case LIGHT_BLUE:
 							if(!pink){
-								pink=true;
+								light_blue=true;
 								contTipi4++;
 							}
 						}		
@@ -176,7 +177,7 @@ public class Card_common {
 					if(contTipi4<=3)
 						contCol++;
 				}
-				if(contCol==3) {
+				if(contCol>=3) {
 					verifica= true;
 				}
 			}
@@ -256,7 +257,7 @@ public class Card_common {
 			break;
 
 		case 7: 
-			int contTipi6=1;
+			int contTipi6=0;
 			int contRig=0;
 			boolean rNotFull=false;
 			ObjectEnum colour6;
@@ -267,7 +268,8 @@ public class Card_common {
 			green=false;
 			white=false;
 			for(int k6=0; k6 <6; k6++) {
-				contTipi6=1;
+				rNotFull=false;
+				contTipi6=0;
 				for(int i6=0; i6<5;i6++) {
 					if((this.shelf[k6][i6]).isEmpty()){
 						rNotFull=true;
@@ -313,7 +315,7 @@ public class Card_common {
 						contRig++;
 				}
 			}
-			if(contRig==4) {
+			if(contRig>=4) {
 				verifica= true;
 			}
 
@@ -396,7 +398,7 @@ public class Card_common {
 			}
 			break;
 
-		case 12:
+		case 12: // da corregere 
 			for (int k11=0; k11<2; k11++) { 
 				if( !(this.shelf[k11][0]).isEmpty() && !(this.shelf[k11+1][1]).isEmpty() && !(this.shelf[k11+2][2]).isEmpty() && !(this.shelf[k11+3][3]).isEmpty() && !(this.shelf[k11+4][4]).isEmpty()) {
 					verifica=true;

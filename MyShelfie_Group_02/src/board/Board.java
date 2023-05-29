@@ -192,6 +192,10 @@ public class Board {
 		table[8][8] = new Tiles (ObjectEnum.NULL);
 	}
 	
+	public Tiles[][] getTable() {
+		return table;
+	}
+
 	public void boardFill(Bag borsa) {
 		for (int k=0; k<9; k++) {
 			for (int j=0; j<9; j++) {

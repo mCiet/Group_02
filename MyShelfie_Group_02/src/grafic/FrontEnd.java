@@ -27,6 +27,8 @@ import grafic_utils.*;
 import java.util.List;
 import java.util.ArrayList;
 import player.*;
+import tiles.ObjectEnum;
+import tiles.Tiles;
 import gameController.*;
 
 
@@ -34,7 +36,7 @@ public class FrontEnd extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtNGiocatori;
-	private GridTiles board;
+	private GridTiles boardGrid;
 	private ShelfTiles shelf;
 	private GameController controller;
 	
@@ -62,6 +64,51 @@ public class FrontEnd extends JFrame {
 	int nGiocatori=0;
 	private JLabel lblNewLabel;
 	private JLabel lblNewLabel_1;
+	private GameController contr;
+	public void setController(GameController contr) {
+		this.contr=contr;
+	}
+	
+	public void UpdateBoardView(Tiles[][] board) {
+		for( int i=0; i<9; i++) {
+			for(int k=0; k<9;k++) {
+			Tiles tile= board[i][k];
+			Color colour = getColorTile(tile.gObject());
+			
+			boardGrid.setCellColor(i, k, colour);
+			}
+		}
+		contentPane.revalidate();
+		contentPane.repaint();
+		
+	}
+	
+	private Color getColorTile(ObjectEnum  type) {
+		switch(type) {
+		case GREEN:
+			return Color.GREEN;
+		case BLUE:
+			return Color.BLUE;
+		case LIGHT_BLUE:
+			return Color.CYAN;
+		case PINK:
+			return Color.pink;
+		case YELLOW:
+			return Color.YELLOW;
+		case WHITE:
+			return Color.WHITE;
+		case NULL:
+			return Color.GRAY;
+		case EMPTY:
+			return Color.LIGHT_GRAY;
+		default: 
+			return Color.GRAY;
+		}
+		
+	}
+	
+
+	
 	public FrontEnd() {
 		
 		
@@ -118,7 +165,9 @@ public class FrontEnd extends JFrame {
 		
 		
 		
+		
 		btnAvvio.addActionListener(new ActionListener(){
+		
 			
 			
 			
@@ -129,21 +178,23 @@ public class FrontEnd extends JFrame {
 					if(nGiocatori>=2 && nGiocatori<=4) {
 
 						lblProva.setText(""+ nGiocatori);
-						board = new GridTiles();
+						boardGrid = new GridTiles();
 						boardPanel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null,null,null));
 						boardPanel.setLayout(new BorderLayout(0,0));
-						boardPanel.add(board, BorderLayout.CENTER);
+						boardPanel.add(boardGrid, BorderLayout.CENTER);
 						
 						
 						shelf = new ShelfTiles();
 						shelfPanel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null,null,null));
 						shelfPanel.setLayout(new BorderLayout(0,0));
-						shelfPanel.add(board, BorderLayout.CENTER);
+						shelfPanel.add(shelf, BorderLayout.CENTER);
 						
 						List<Player> giocatori=  new ArrayList<Player>();
 						for(int k=0; k<nGiocatori; k++) {
 							giocatori.add(new Player(" Giocatore "+ k));
 						}
+						controller.setController(FrontEnd);
+						
 						controller.startGame(nGiocatori);
 						
 						

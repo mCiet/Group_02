@@ -4,7 +4,13 @@
 /gameController/
 /grafic/
 /grafic_utils/
+<<<<<<< Updated upstream
 /main/
+=======
+/item_tiles/
+/main/
+/module-info.class
+>>>>>>> Stashed changes
 /player/
 /tiles/
 /tokens/

@@ -217,7 +217,12 @@ public class Board {
 		tiles = table[i][j];
 		return tiles;
 	}
+	
+	public void emptycell(int i, int j) {
+		this.table[i][j].setColour(ObjectEnum.EMPTY);
 		
+		}
+	
 	public boolean refillLivingroom()	{
 		boolean refill=false;
 		

@@ -28,8 +28,22 @@ public class Shelf {
 		}
 	}
 	
+	//controllo se qualcuno ha concluso la shelf
+	
+	public boolean Isfull() {
+		
+		for(int i =0;i<6;i++) {
+			for (int j =0; j<5;j++) {
+				if(this.shelf[i][j]== null) { 
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	
 	//funzione per controllare se c'è abbastanza posto nella colonna scelta
-	public boolean IsFull(int j,int nTessere) {
+	public boolean IsFullCol(int j,int nTessere) {
 		int CelleLibere=0;
 		
 		for (int i=0;i< 6;i++) {

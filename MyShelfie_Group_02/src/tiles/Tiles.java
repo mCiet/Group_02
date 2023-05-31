@@ -5,6 +5,11 @@ public class Tiles {
 	private ObjectEnum colour;
 	
 	
+
+	public void setColour(ObjectEnum colour) {
+		this.colour = colour;
+	}
+
 	public Tiles(ObjectEnum colour) {
 		this.colour = colour;
 	}

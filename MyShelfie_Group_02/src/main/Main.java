@@ -37,10 +37,14 @@ public class Main {
 		
 		
 		 //passaggio del numero dei giocatori per creare soggiorno 
-		Board livingroom = new Board(nGiocatori);
+		//creazione soggiorno
+			Board livingroom = new Board(nGiocatori);
+		//creazione bag
 			Bag bag = new Bag();
-			
+		
+		//riempimento board
 			livingroom.boardFill(bag);
+			
 		// creazione player 
 			Player[] vettPlayer = null;
 			
@@ -52,18 +56,41 @@ public class Main {
 			System.out.println("Ecco la vostra plancia: ");
 			livingroom.printBoard();
 			
-		//scelta da parte del giocatore della Tiles
+		
+			
+			//scelta e stampa obbiettivi communi
+			
+			
+			
+			//scleta e stampa degli obbiettivi personali
+			
+			
+			
+			
+			
+			
 			
 			
 			while(!endgame(vettPlayer)) {//controllo che non shelf non siano piene
 				for(int i=0;i<4;i++) { //scandisce il turno di ogni giocatore
 					
+					
 					int nTessere;
-					boolean piena;
-					int col;
+					boolean piena; //mi serve per gestire se la colonna è piena
+					int col; //numero colonna
+					int colonneLibere=0; //conta le colonne in cui ci stanno le tessere scelte
+					int x1= 0,x2= 0,x3= 0,y1= 0,y2= 0,y3 = 0; // coordinate per le tiles
+					
+					//stampa shelf
+					vettPlayer[i].getShelf().printShelf();
 					
 					do {
-					//manca controllo tessere
+					//controllo tessere
+						
+						
+						
+						
+						//scelta da parte del giocatore della Tiles
 						do{
 							System.out.println("Quante tessere vuoi prendere? (da 1 a 3)");
 							nTessere=scn.nextInt();
@@ -72,47 +99,99 @@ public class Main {
 					
 						System.out.println("in che posizione si trova la tessera che vuoi prelevare? ");
 						System.out.println("inserisci la riga: ");
-						int y1 = scn.nextInt();
+						x1 = scn.nextInt(); 
 						System.out.println("inserisci la colonna: ");
-						int x1 = scn.nextInt();
+						y1 = scn.nextInt();
 						if(nTessere>=2) {
 							System.out.println("in che posizione si trova la 2° tessera che vuoi prelevare? ");
 							System.out.println("inserisci la riga: ");
-							int y2 = scn.nextInt();
+							x2 = scn.nextInt();
 							System.out.println("inserisci la colonna: ");
-							int x2 = scn.nextInt();
+							y2 = scn.nextInt();
 						}
 						if(nTessere>=3) {
 							System.out.println("in che posizione si trova la 2° tessera che vuoi prelevare? ");
 							System.out.println("inserisci la riga: ");
-							int y3 = scn.nextInt();
+							x3 = scn.nextInt();
 							System.out.println("inserisci la colonna: ");
-							int x3 = scn.nextInt();
+							y3 = scn.nextInt();
 						}
 						
+						
+						
 						do {
+							
 							System.out.println("inserisci la colonna in cui vuoi posizionare le tessere che hai scelto da 0 a 5");
 							col = scn.nextInt();
 						
-							piena = vettPlayer[i].getShelf().IsFullCol(col, nTessere);
-						}while(!piena);
-						
-						
-						
-						Tiles tiles = livingroom.getTiles(y1,x1);
-						livingroom.emptycell(y1, x1); //rende la cella presa vuota
-						
-						
-						
-						
+							piena = vettPlayer[i].getShelf().IsFullCol(col, nTessere); //controllo che colonna richesta dal giocatore sia 
 							
+							if(piena) {
+								for(int j=0;j<5;j++) { //scandisco le colonne per vedere se c'è almeno una libera
+									if(!(vettPlayer[i].getShelf().IsFullCol(j, nTessere))){ //se la colonna non è piena aument colonna libere
+										colonneLibere ++;
+									}
+								}
+								//System.out.println("colonna piena reinserire una colonna valida");
+							}
+						}while((piena) && (colonneLibere!=0)); //se shelf non è piena oppure se non ci sono colonne libere esce dal ciclo
+						
+						if(colonneLibere==0) {
+							System.out.println("Non puoi prendere " + nTessere + " tessere, non ci stanno in nessuna delle colonne della tua libreria. Scegli un numero di Tessere inferiore");
+						}
 							
-						}while(!piena);
+						}while(colonneLibere==0);
+					
+						//estrazione TILES e inserimento nella libreria
+						Tiles tiles1 = livingroom.getTiles(x1,y1);
+						livingroom.emptycell(x1, y1); //rende la cella presa vuota
+						vettPlayer[i].getShelf().addTiles(col, tiles1); //inserimento nella colonna corrispondete
+						
+						if(nTessere >=2) {
+							Tiles tiles2 = livingroom.getTiles(x2,y2);
+							livingroom.emptycell(x2,y2); //rende la cella presa vuota
+							vettPlayer[i].getShelf().addTiles(col, tiles2); //inserimento nella colonna corrispondete
+						}
+						
+						if(nTessere ==3) {
+							Tiles tiles3 = livingroom.getTiles(x3,y3);
+							livingroom.emptycell(x3,y3); //rende la cella presa vuota
+							vettPlayer[i].getShelf().addTiles(col, tiles3); //inserimento nella colonna corrispondete
+						}
+						
+						System.out.println("Ora la tua shelf è questa: ");
+						vettPlayer[i].getShelf().printShelf();
+						
+						System.out.println("Ecco la vostra plancia togliendo le tessere utilizzate: ");
+						livingroom.printBoard();
+						
+						//controllo tessere comuni
 						
 						
-						//da gestire come passare la giusta shelf
+						
+						
+						
+						
+						//controllo refill tabellone
+						
+						
+						
+						
+						
+						
 				}
-				}
+			}
+			
+			//controllo carte personali
+			
+			
+			//conteggio punti
+			
+			
+			
+			//stampa dei punteggi
+			
+			
 	}
 	
 	public static boolean endgame(Player[] vettPlayer){

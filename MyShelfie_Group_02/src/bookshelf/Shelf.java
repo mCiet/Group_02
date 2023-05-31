@@ -19,7 +19,6 @@ public class Shelf {
 
 
 	public void addTiles( int c, Tiles tiles) {
-		int CelleLibere=0;
 		
 		for (int i=0;i< 6;i++) {
 			if(this.shelf[i][c]== null) { //da testare se funziona correttamente
@@ -58,6 +57,10 @@ public class Shelf {
 		}
 	}
 	
-	
+	public void printShelf() {
+		for (int k=0; k<6; k++) {
+			System.out.println(shelf[k][0].gObject()+ " "+ shelf[k][1].gObject()+ " "+ shelf[k][2].gObject()+ " " + shelf[k][3].gObject()+ " " + shelf[k][4].gObject());
+		}
+	}
 
 }

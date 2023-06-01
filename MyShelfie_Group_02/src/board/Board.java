@@ -231,11 +231,10 @@ public class Board {
 				//controllo che non sia vuota
 				if(!(this.table[i][j].gObject().equals(ObjectEnum.EMPTY))) {
 					//controllo se ci sono intorno solo caselle vuote
-					if((this.table[i+1][j].gObject().equals(ObjectEnum.EMPTY))) {
-						if((this.table[i+1][j].gObject().equals(ObjectEnum.EMPTY))) {
-							if((this.table[i][j+1].gObject().equals(ObjectEnum.EMPTY))) {
-								if((this.table[i][j-1].gObject().equals(ObjectEnum.EMPTY))) {
-									if((this.table[i-1][j].gObject().equals(ObjectEnum.EMPTY))) {
+					if((this.table[i+1][j].gObject().equals(ObjectEnum.EMPTY)) || (this.table[i+1][j].gObject().equals(ObjectEnum.NULL)) ) {
+							if((this.table[i][j+1].gObject().equals(ObjectEnum.EMPTY)) || (this.table[i][j+1].gObject().equals(ObjectEnum.NULL))) {
+								if((this.table[i][j-1].gObject().equals(ObjectEnum.EMPTY)) || (this.table[i][j-1].gObject().equals(ObjectEnum.EMPTY))) {
+									if((this.table[i-1][j].gObject().equals(ObjectEnum.EMPTY)) || (this.table[i-1][j].gObject().equals(ObjectEnum.NULL))) {
 										refill = true;//se è true significa che quella casella ha intorno solo caselle vuote
 									}else {
 										refill=false;
@@ -246,9 +245,6 @@ public class Board {
 							}else {
 								refill=false;
 							}
-						}else {
-							refill=false;
-						}
 					}else {
 						refill=false;//se anche solo uno degli if è falso significa che c'è almeno un casella adiacente che non è vuota
 					}

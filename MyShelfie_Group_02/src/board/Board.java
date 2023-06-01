@@ -115,6 +115,7 @@ public class Board {
 		
 		if(nGiocatori ==3) {
 			table[5][0] = new Tiles (ObjectEnum.EMPTY);
+			table[5][7] = new Tiles (ObjectEnum.NULL);
 		}else {
 			table[5][0] = new Tiles (ObjectEnum.NULL);
 			table[5][7] = new Tiles (ObjectEnum.NULL);

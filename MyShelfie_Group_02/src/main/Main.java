@@ -34,7 +34,7 @@ public class Main {
 			do {
 				System.out.println("inserisci il numero di giocatori valido tra 2 e 4: ");
 				nGiocatori= scn.nextInt();
-			}while(nGiocatori<=2 && nGiocatori>=4);
+			}while(nGiocatori<=2 || nGiocatori>=4);
 			
 			
 			

@@ -27,14 +27,24 @@ public class Main {
 		public static void main(String[] args) {
 			
 			//grafic.FrontEnd.Window(args); utlizzo della grafica non
-			int nGiocatori;
+			int nGiocatori=0;
 			
 			Scanner scn = new Scanner(System.in);
-			
+			System.out.println("BENEVNUTI IN MY SHELFIE");
 			do {
-				System.out.println("inserisci il numero di giocatori valido tra 2 e 4: ");
-				nGiocatori= scn.nextInt();
-			}while(nGiocatori<=2 || nGiocatori>=4);
+				System.out.println("Inserisci il numero di giocatori valido tra 2 e 4: ");
+				if(scn.hasNextInt()) {
+					nGiocatori= scn.nextInt();
+				}else {
+					System.out.println("Inserire un valore numerico");
+					scn.nextLine();
+					
+				}
+				
+				
+				
+			}while(nGiocatori<2 || nGiocatori>=4);
+			scn.close();
 			
 			
 			
@@ -48,9 +58,10 @@ public class Main {
 				livingroom.boardFill(bag);
 				
 			// creazione player 
-				Player[] vettPlayer = null;
+				Player[] vettPlayer = new Player[nGiocatori];
 				
-				for(int i =0; i<4;i++) {
+				
+				for(int i =0; i<nGiocatori;i++) {
 					vettPlayer[i] = new Player();
 				}
 				
@@ -60,6 +71,7 @@ public class Main {
 				
 			
 				
+		}
 				//scelta e stampa obbiettivi communi
 				
 				
@@ -71,7 +83,7 @@ public class Main {
 				
 				
 				
-				
+				/*
 				
 				while(!endgame(vettPlayer)) {//controllo che non shelf non siano piene
 					for(int i=0;i<4;i++) { //scandisce il turno di ogni giocatore
@@ -246,7 +258,7 @@ public class Main {
 			
 		
 		}
-
+*/
 	}
 			
 

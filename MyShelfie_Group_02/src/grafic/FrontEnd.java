@@ -191,9 +191,9 @@ public class FrontEnd extends JFrame {
 						
 						List<Player> giocatori=  new ArrayList<Player>();
 						for(int k=0; k<nGiocatori; k++) {
-							giocatori.add(new Player(" Giocatore "+ k));
+						//	giocatori.add(new Player(" Giocatore "+ k));
 						}
-						controller.setController(FrontEnd);
+						//controller.setController(FrontEnd);
 						
 						controller.startGame(nGiocatori);
 						

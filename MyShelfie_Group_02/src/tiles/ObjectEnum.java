@@ -16,7 +16,8 @@ public enum ObjectEnum {
 	private ObjectEnum(String object) {
 		this.object = object;
 	}
-	
+
+
 	public String gObject() {
 		return object;
 		

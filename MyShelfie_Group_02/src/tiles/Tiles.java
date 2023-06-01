@@ -14,6 +14,8 @@ public class Tiles {
 		this.colour = colour;
 	}
 	
+	
+	
 	public ObjectEnum gObject() {
 		return this.colour;
 		

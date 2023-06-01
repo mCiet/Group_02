@@ -258,6 +258,30 @@ public class Board {
 		return refill;
 	}
 	
+	public boolean freeSide(int i, int j) { //controllo freeside
+		
+		//sopra
+		if((this.table[i-1][j].gObject().equals(ObjectEnum.EMPTY)) || (this.table[i-1][j].gObject().equals(ObjectEnum.NULL))   ) { 
+			return true;
+		}
+		
+		//sotto
+		if((this.table[i+1][j].gObject().equals(ObjectEnum.EMPTY)) || (this.table[i-1][j].gObject().equals(ObjectEnum.NULL))   ) { 
+			return true;
+		}
+		
+		//destra
+		if((this.table[i][j+1].gObject().equals(ObjectEnum.EMPTY)) || (this.table[i-1][j].gObject().equals(ObjectEnum.NULL))   ) { 
+			return true;
+		}
+		
+		//sinistra
+		if((this.table[i][j-1].gObject().equals(ObjectEnum.EMPTY)) || (this.table[i-1][j].gObject().equals(ObjectEnum.NULL))   ) { 
+			return true;
+		}
+		
+		return false;
+	}
 	}
 
 	

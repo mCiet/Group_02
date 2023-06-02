@@ -12,6 +12,7 @@ public class Card_common {
 	public Card_common(Tiles[][] shelf) { //passo da main la matrice di tiles al posto che direttamente la shelf
 		this.shelf = shelf;
 	}
+	
 
 
 	public boolean checkCommonGoals(int nGoals) {
@@ -21,10 +22,7 @@ public class Card_common {
 		// controllo in base al numero di obbiettivo comune se è stato raggiunto 
 		//--> ritorna true e false se è stato raggiunto o no
 		case 1: 
-			System.out.println("Due gruppi separati di 4 tessere dello\r\n"
-					+ "stesso tipo che formano un quadrato 2x2.\r\n"
-					+ "Le tessere dei due gruppi devono essere\r\n"
-					+ "dello stesso tipo.");
+			
 			int cont=0;
 			for (int k=0; k<5; k++) { // il ciclo controlla una riga e colonna in meno perchè sarebbe inutile riga 5 e colonna 4 già controllate con riga e colonan precendente
 				for(int i=0; i<4; i++) {//
@@ -38,8 +36,7 @@ public class Card_common {
 			break; // se nessun ciclo trova la corrispondenza con l'obbiettivo comune restituisce false
 
 		case 2:
-			System.out.println("Due colonne formate ciascuna\r\n"
-					+ "da 6 diversi tipi di tessere. ");
+			
 			ObjectEnum colour1;
 			int contTipi1;
 			int i1=0,k1=0;
@@ -116,28 +113,15 @@ public class Card_common {
 			break;
 
 		case 3:
-			/*System.out.println("Quattro gruppi separati formati ciascuno\r\n"
-					+ "da quattro tessere adiacenti dello stesso\r\n"
-					+ "tipo (non necessariamente come mostrato\r\n"
-					+ "in figura). Le tessere di un gruppo possono\r\n"
-					+ "essere diverse da quelle di un altro gruppo. ");*/
-			// da chiarire cosa chiede l'obbiettivo 
-
+			
+			// non implementato
 
 		case 4:	
-			/*System.out.println("Sei gruppi separati formati ciascuno\r\n"
-					+ "da due tessere adiacenti dello stesso tipo\r\n"
-					+ "(non necessariamente come mostrato in\r\n"
-					+ "figura). Le tessere di un gruppo possono\r\n"
-					+ "essere diverse da quelle di un altro gruppo.");*/
-			// da chiarire cosa chieda nello specifico l'obbiettivo
+			// non implementato
 
 
 		case 5: 
-			System.out.println("Tre colonne formate ciascuna da\r\n"
-					+ "6 tessere di uno, due o tre tipi differenti.\r\n"
-					+ "Colonne diverse possono avere\r\n"
-					+ "combinazioni diverse di tipi di tessere.");
+			
 			
 			ObjectEnum colour4;
 			int contTipi4=0;
@@ -204,8 +188,7 @@ public class Card_common {
 			}
 			break;
 		case 6:
-			System.out.println("Due righe formate ciascuna\r\n"
-					+ "da 5 diversi tipi di tessere");
+			
 			
 			ObjectEnum colour5;
 			int contTipi5;
@@ -281,10 +264,7 @@ public class Card_common {
 			break;
 
 		case 7: 
-			System.out.println("Quattro righe formate ciascuna\r\n"
-					+ "da 5 tessere di uno, due o tre tipi\r\n"
-					+ "differenti. Righe diverse possono avere\r\n"
-					+ "combinazioni diverse di tipi di tessere.");
+			
 			int contTipi6=0;
 			int contRig=0;
 			boolean rNotFull=false;
@@ -350,17 +330,14 @@ public class Card_common {
 			break;
 
 		case 8:
-			System.out.println("Quattro tessere dello stesso tipo\r\n"
-					+ "ai quattro angoli della Libreria.");
+			
 			if((this.shelf[0][0]).equals(this.shelf[0][4]) && (this.shelf[0][4]).equals(this.shelf[5][4]) && (this.shelf[5][4]).equals(this.shelf[5][0])) {
 				verifica=true;
 			}
 			break;
 
 		case 9:
-			System.out.println("Otto tessere dello stesso tipo. Non ci\r\n"
-					+ "sono restrizioni sulla posizione di\r\n"
-					+ "queste tessere.");
+			
 			
 			ObjectEnum colour;
 			int pink8=0,yellow8=0,blue8=0,light_blue8=0,green8=0,white8=0;
@@ -406,8 +383,7 @@ public class Card_common {
 			break;
 
 		case 10:
-			System.out.println("Cinque tessere dello stesso tipo\r\n"
-					+ "che formano una X.");
+			
 			
 			for (int k9=0; k9<4; k9++) { 
 				for(int i9=0; i9<3; i9++) {
@@ -422,8 +398,7 @@ public class Card_common {
 			break;		
 
 		case 11:
-			System.out.println("Cinque tessere dello stesso tipo che\r\n"
-					+ "formano una diagonale. ");
+		
 			for (int k10=0; k10<2; k10++) { 
 				if((this.shelf[k10][0]).equals(this.shelf[k10+1][1]) && (this.shelf[k10+1][1]).equals(this.shelf[k10+2][2]) && (this.shelf[k10+2][2]).equals(this.shelf[k10+3][3]) && (this.shelf[k10+3][3]).equals(this.shelf[k10+4][4])) {
 					verifica=true;	
@@ -438,11 +413,7 @@ public class Card_common {
 			break;
 
 		case 12: // da corregere
-			System.out.println("Cinque colonne di altezza crescente o\r\n"
-					+ "decrescente: a partire dalla prima colonna\r\n"
-					+ "a sinistra o a destra, ogni colonna successiva\r\n"
-					+ "deve essere formata da una tessera in più.\r\n"
-					+ "Le tessere possono essere di qualsiasi tipo.");
+			
 			for (int k11=0; k11<2; k11++) { 
 				if( !(this.shelf[k11][0]).isEmpty() && !(this.shelf[k11+1][1]).isEmpty() && !(this.shelf[k11+2][2]).isEmpty() && !(this.shelf[k11+3][3]).isEmpty() && !(this.shelf[k11+4][4]).isEmpty()) {
 					verifica=true;

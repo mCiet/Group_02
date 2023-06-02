@@ -1,6 +1,10 @@
 /board/
-/grafic/
-/main/
 /bookshelf/
 /cards/
+/gameController/
+/grafic/
+/grafic_utils/
+/main/
+/player/
 /tiles/
+/tokens/

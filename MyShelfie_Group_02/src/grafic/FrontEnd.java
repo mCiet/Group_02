@@ -173,7 +173,7 @@ public class FrontEnd extends JFrame {
 			
 			public void actionPerformed(ActionEvent e) {
 				String valoreTesto= txtNGiocatori.getText();
-				if(Main.isNumeric(valoreTesto)) {
+				/*if(Main.isNumeric(valoreTesto)) {
 					nGiocatori = Integer.parseInt(valoreTesto);
 					if(nGiocatori>=2 && nGiocatori<=4) {
 
@@ -209,7 +209,7 @@ public class FrontEnd extends JFrame {
 				
 				
 				
-			}
+			*/}
 		});
 		
 		

@@ -10,6 +10,9 @@ public class Tiles {
 		this.colour = colour;
 	}
 
+	public Tiles() {
+		this.colour = ObjectEnum.EMPTY;
+	}
 	public Tiles(ObjectEnum colour) {
 		this.colour = colour;
 	}

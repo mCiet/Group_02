@@ -9,8 +9,12 @@ public class Shelf {
 	public Shelf() {
 		shelf = new Tiles[6][5];
 		
+		for(int i =0;i<6;i++) {
+			for (int j =0; j<5;j++) {
+				shelf[i][j] = new Tiles();
+			}
+		}
 	}
-	
 	
 	
 	public Tiles[][] getShelf() {
@@ -33,7 +37,7 @@ public class Shelf {
 		
 		for(int i =0;i<6;i++) {
 			for (int j =0; j<5;j++) {
-				if(this.shelf[i][j]== null) { 
+				if(this.shelf[i][j].gObject()== ObjectEnum.EMPTY) { 
 					return false;
 				}
 			}

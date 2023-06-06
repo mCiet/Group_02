@@ -94,4 +94,12 @@ public enum personal_goals {
 		this.personal_goals = personal_goals;
 	}
 	
+	public void printPersGoals() {
+	for (int k=0; k<6; k++) {
+		System.out.println(personal_goals[k][0].gObject()+ " "+ personal_goals[k][1].gObject()+ " "+ personal_goals[k][2].gObject()+ " " + personal_goals[k][3].gObject()+ " " + personal_goals[k][4].gObject());
+	}	
+	}
+	
+	
+	
 }

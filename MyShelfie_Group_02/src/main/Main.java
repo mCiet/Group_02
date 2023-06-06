@@ -2,8 +2,8 @@ package main;
 
 import java.util.Scanner;
 import java.util.Random;
-
-
+import java.util.Set;
+import java.util.HashSet;
 import board.*;
 import tiles.*;
 import player.*;
@@ -77,6 +77,10 @@ public class Main {
 
 		//scelta e stampa degli obbiettivi personali
 		
+		
+		
+		
+		
 		while(!endgame(vettPlayer,nGiocatori)) {//controllo che shelf non siano piene
 			
 			for(int i=0;i<4;i++) { //scandisce il turno di ogni giocatore
@@ -87,10 +91,13 @@ public class Main {
 				System.out.println("   ");
 				System.out.println("Turno del giocatore " + (vettPlayer[i].getID()+1)); //agiungo uno perche parte da 0
 				//stampa shelf
-				System.out.println("la tua libreria: ");
+				System.out.println("La tua libreria: ");
 				vettPlayer[i].getShelf().printShelf();
 				
 				//stampa obbiettivo personale
+				System.out.println("Il tuo obbiettivo personale: ");
+								
+				vettPlayer[i].getPersonalGoals().printPersGoals();
 				
 				
 				int nTessere = 0;
@@ -366,6 +373,7 @@ public class Main {
 
 	}
 	
+
 	public static int verificaRiga() {
 		int x;
 		Scanner s = new Scanner(System.in);
@@ -441,6 +449,7 @@ public class Main {
 		
 		return y;
 	}
+
 
 }
 

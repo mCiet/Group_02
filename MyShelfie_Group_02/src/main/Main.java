@@ -70,16 +70,13 @@ public class Main {
 		} while (comGoals2 == comGoals1);
 		System.out.println("   ");
 		System.out.println("OBBIETTIVO COMUNE 1:");
+		System.out.println("				");
 		showCommonGoals(comGoals1);
 		System.out.println("   ");
 		System.out.println("OBBIETTIVO COMUNE 2:");
+		System.out.println("				");
 		showCommonGoals(comGoals2);
 
-		//scelta e stampa degli obbiettivi personali
-		
-		
-		
-		
 		
 		while(!endgame(vettPlayer,nGiocatori)) {//controllo che shelf non siano piene
 			
@@ -91,12 +88,13 @@ public class Main {
 				System.out.println("   ");
 				System.out.println("Turno del giocatore " + (vettPlayer[i].getID()+1)); //agiungo uno perche parte da 0
 				//stampa shelf
+				System.out.println("				");
 				System.out.println("La tua libreria: ");
 				vettPlayer[i].getShelf().printShelf();
-				
+				System.out.println("				");
 				//stampa obbiettivo personale
 				System.out.println("Il tuo obbiettivo personale: ");
-								
+				System.out.println("				");				
 				vettPlayer[i].getPersonalGoals().printPersGoals();
 				
 				
@@ -114,7 +112,9 @@ public class Main {
 					do {
 							
 						do{
+							System.out.println("				");
 							System.out.println("Ecco la vostra plancia: ");
+							System.out.println("				");
 							livingroom.printBoard();
 							
 							System.out.println("Quante tessere vuoi prendere? (numero valido: da 1 a 3): ");
@@ -130,7 +130,7 @@ public class Main {
 
 
 						do {
-							System.out.println("in che posizione si trova la tessera che vuoi prelevare? ");
+							System.out.println("In che posizione si trova la tessera che vuoi prelevare? ");
 							//restiuisce riga gia verificata
 							x1=verificaRiga();
 							//restituise colonna in numero e verificata
@@ -202,7 +202,7 @@ public class Main {
 					//inserimento nella shelf
 					do {
 
-						System.out.println("inserisci la colonna in cui vuoi posizionare le tessere che hai scelto da 0 a 5");
+						System.out.println("Inserisci la colonna in cui vuoi posizionare le tessere che hai scelto da 0 a 5");
 						col = sc.nextInt();
 
 						piena = vettPlayer[i].getShelf().IsFullCol(col, nTessere); //controllo che colonna richesta dal giocatore sia vuota

@@ -345,6 +345,14 @@ public class Board {
 
 		return false;
 	}
+	
+	public boolean accessible(int j, int i) {
+		
+		if ((this.table[i][j].gObject().equals(ObjectEnum.EMPTY)) || (this.table[i][j].gObject().equals(ObjectEnum.NULL))){
+			return false;
+		}
+		return true;
+	}
 }
 
 

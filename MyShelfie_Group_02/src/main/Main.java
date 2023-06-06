@@ -33,7 +33,7 @@ public class Main {
 			}
 
 
-			scn.close();
+			//scn.close();
 		}while(nGiocatori<2 || nGiocatori>4);
 		
 
@@ -81,6 +81,7 @@ public class Main {
 			
 			for(int i=0;i<4;i++) { //scandisce il turno di ogni giocatore
 
+				
 
 				//stampa id player per capire chi sta giocando
 				System.out.println("   ");
@@ -97,10 +98,8 @@ public class Main {
 				int col; //numero colonna
 				int colonneLibere=0; //conta le colonne in cui ci stanno le tessere scelte
 				int x1= 0,x2= 0,x3= 0 ,y1= 0,y2= 0,y3 = 0;// coordinate per le tiles
-				String col1, col2, col3;
-				boolean valida; //controllo lato libero tessera
-				Scanner scn = new Scanner(System.in);
-				boolean letteradiversa = false;// variabile controllo lettera
+				boolean valida,nulla; //controllo lato libero tessera
+				Scanner sc = new Scanner(System.in);
 
 				do {
 					
@@ -108,138 +107,40 @@ public class Main {
 					do {
 							
 						do{
+							System.out.println("Ecco la vostra plancia: ");
+							livingroom.printBoard();
 							
 							System.out.println("Quante tessere vuoi prendere? (numero valido: da 1 a 3): ");
-							if(scn.hasNextInt()) {
-								nTessere= scn.nextInt();
+							if(sc.hasNextInt()) {
+								nTessere= sc.nextInt();
 							}else {
 								System.out.println("Inserire un valore numerico");
-								scn.nextLine();
+								sc.nextLine();
 
 							}
 							
 						}while(nTessere<1 || nTessere >3);
 
 
-
-						System.out.println("in che posizione si trova la tessera che vuoi prelevare? ");
-						System.out.println("inserisci la riga tra 0- 8: ");
-						x1 = scn.nextInt();
-						
-						
 						do {
-							System.out.println("inserisci la colonna tra A-I: ");
-							col1 = scn.next();
-							
-							//assegnazione lettera corrispondente
-							switch(col1) {
-							
-							case "A","a":
-								y1 = 0;
-								break;
-								
-							case "B","b":
-								y1 = 1;
-								break;
-							
-							
-							case "C","c":
-								y1 = 2;
-								break;
-								
-							case "D","d":
-								y1 = 3;
-								break;
-								
-							case "E","e":
-								y1 = 4;
-								break;
-							
-							
-							case "F","f":
-								y1 = 5;
-								break;
-							
-							case "G","g":
-								y1 = 6;
-								break;
-								
-							case "H","h":
-								y1 = 7;
-								break;
-							
-							
-							case "I","i":
-								y1 = 2;
-								break;
-								
-							default:
-								y1 = -1;
-								System.out.println("Inserire una LETTERA tra A-I");
-							}
-						 
-						}while(y1<0);
+							System.out.println("in che posizione si trova la tessera che vuoi prelevare? ");
+							//restiuisce riga gia verificata
+							x1=verificaRiga();
+							//restituise colonna in numero e verificata
+							y1 = verificaCol();
+						}while(!livingroom.accessible(x1,y1));
 						
 						valida = livingroom.freeSide(x1, y1);
 
 						if(valida) {
 							if(nTessere>=2) {
-
-								System.out.println("in che posizione si trova la 2° tessera che vuoi prelevare? ");
-								System.out.println("inserisci la riga 0- 8: ");
-								x2 = scn.nextInt();
 								do {
-									System.out.println("inserisci la colonna tra A-I: ");
-									col2 = scn.next();
-									
-									//assegnazione lettera corrispondente
-									switch(col2) {
-									
-									case "A","a":
-										y2 = 0;
-										break;
-										
-									case "B","b":
-										y2 = 1;
-										break;
-									
-									
-									case "C","c":
-										y2 = 2;
-										break;
-										
-									case "D","d":
-										y2 = 3;
-										break;
-										
-									case "E","e":
-										y2 = 4;
-										break;
-									
-									
-									case "F","f":
-										y2 = 5;
-										break;
-									
-									case "G","g":
-										y2 = 6;
-										break;
-										
-									case "H","h":
-										y2 = 7;
-										break;
-									
-									
-									case "I","i":
-										y2 = 2;
-										break;
-										
-									default:
-										y2 = -1;
-										System.out.println("Inserire una LETTERA tra A-I");
-									}
-								 
-								}while(y2<0);
+									//restiuisce riga gia verificata
+									x2=verificaRiga();
+									//restituise colonna in numero e verificata
+									y2 = verificaCol();
+								}while(!livingroom.accessible(x2,y2));
+								
 								
 								if(livingroom.freeSide(x2, y2)) {
 									
@@ -260,63 +161,14 @@ public class Main {
 
 						if(valida) {
 							if(nTessere==3) {
-								System.out.println("in che posizione si trova la 3° tessera che vuoi prelevare? ");
-								System.out.println("inserisci la riga 0- 8: ");
-								x3 = scn.nextInt();
 								
 								do {
-									System.out.println("inserisci la colonna tra A-I: ");
-									col3 = scn.next();
-									
-									//assegnazione lettera corrispondente
-									switch(col3) {
-									
-									case "A","a":
-										y3 = 0;
-										break;
-										
-									case "B","b":
-										y3 = 1;
-										break;
-									
-									
-									case "C","c":
-										y3 = 2;
-										break;
-										
-									case "D","d":
-										y3 = 3;
-										break;
-										
-									case "E","e":
-										y3 = 4;
-										break;
-									
-									
-									case "F","f":
-										y3 = 5;
-										break;
-									
-									case "G","g":
-										y3 = 6;
-										break;
-										
-									case "H","h":
-										y3 = 7;
-										break;
-									
-									
-									case "I","i":
-										y3 = 2;
-										break;
-										
-									default:
-										y3 = -1;
-										System.out.println("Inserire una LETTERA tra A-I");
-									}
-								 
-								}while(y3<0);
-								
+									//restiuisce riga gia verificata
+									x3=verificaRiga();
+									//restituise colonna in numero e verificata
+									y3 = verificaCol();	
+								}while(!livingroom.accessible(x3,y3));
+																
 								if(livingroom.freeSide(x3, y3)) {
 									if(((x3== x1) && (y3 == y1-1)) || ((x3== x1) && (y3 == y2+1)) ) { //significa che facendo una riga
 										valida = true;
@@ -340,14 +192,11 @@ public class Main {
 
 					}while(!valida);
 
-
-
-
-
+					//inserimento nella shelf
 					do {
 
 						System.out.println("inserisci la colonna in cui vuoi posizionare le tessere che hai scelto da 0 a 5");
-						col = scn.nextInt();
+						col = sc.nextInt();
 
 						piena = vettPlayer[i].getShelf().IsFullCol(col, nTessere); //controllo che colonna richesta dal giocatore sia vuota
 
@@ -370,7 +219,7 @@ public class Main {
 
 				}while(colonneLibere==0); //mi fa reinserire le tessere perchè non ho abbastanza spazio in nessun colonna
 				
-				scn.close();
+				sc.close();
 				
 				//estrazione TILES e inserimento nella libreria
 				Tiles tiles1 = livingroom.getTiles(x1,y1);
@@ -515,6 +364,82 @@ public class Main {
 
 
 
+	}
+	
+	public static int verificaRiga() {
+		int x;
+		Scanner s = new Scanner(System.in);
+		
+		do {
+			do {
+				System.out.println("inserisci la riga, deve essere un NUMERO tra 0- 8: ");
+				
+			}while(!(s.hasNextInt()));
+			x = s.nextInt();
+		}while(x<0 || x>8);
+		
+		return x;
+	}
+	
+	public static int verificaCol(){
+		String col;
+		int y;
+		Scanner s = new Scanner(System.in);
+		
+		do {
+			System.out.println("inserisci la colonna tra A-I: ");
+			col = s.next();
+			
+			//assegnazione lettera corrispondente
+			switch(col) {
+			
+			case "A","a":
+				y = 0;
+				break;
+				
+			case "B","b":
+				y = 1;
+				break;
+			
+			
+			case "C","c":
+				y = 2;
+				break;
+				
+			case "D","d":
+				y = 3;
+				break;
+				
+			case "E","e":
+				y = 4;
+				break;
+			
+			
+			case "F","f":
+				y = 5;
+				break;
+			
+			case "G","g":
+				y = 6;
+				break;
+				
+			case "H","h":
+				y = 7;
+				break;
+			
+			
+			case "I","i":
+				y = 2;
+				break;
+				
+			default:
+				y = -1;
+				System.out.println("Inserire una LETTERA tra A-I");
+			}
+		 
+		}while(y<0);
+		
+		return y;
 	}
 
 }

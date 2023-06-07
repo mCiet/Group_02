@@ -321,7 +321,7 @@ public class Board {
 		return refill;
 	}
 
-	public boolean freeSide(int j, int i) { //controllo freeside
+	public boolean freeSide(int i, int j) { //controllo freeside
 
 		//sopra
 		if((this.table[i-1][j].gObject().equals(ObjectEnum.EMPTY)) || (this.table[i-1][j].gObject().equals(ObjectEnum.NULL))   ) { 

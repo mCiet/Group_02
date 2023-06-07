@@ -23,12 +23,19 @@ public class Shelf {
 
 
 	public void addTiles( int c, Tiles tiles) {
-		
-		for (int i=0;i< 6;i++) {
+		int i=0;
+		boolean trovato=false;
+		do {
 			if(this.shelf[i][c].gObject()== ObjectEnum.EMPTY) { //da testare se funziona correttamente
-				this.shelf[i][c] = tiles;
+				trovato =true;
+			}else {
+			i++;	
 			}
-		}
+			
+		}while(!trovato && i>6);
+		
+		this.shelf[i][c].setColour(tiles.gObject());
+		
 	}
 	
 	//controllo se qualcuno ha concluso la shelf

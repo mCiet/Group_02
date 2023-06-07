@@ -321,7 +321,7 @@ public class Board {
 		return refill;
 	}
 
-	public boolean freeSide(int i, int j) { //controllo freeside
+	public boolean freeSide(int j, int i) { //controllo freeside
 
 		//sopra
 		if((this.table[i-1][j].gObject().equals(ObjectEnum.EMPTY)) || (this.table[i-1][j].gObject().equals(ObjectEnum.NULL))   ) { 
@@ -348,7 +348,7 @@ public class Board {
 	
 	public boolean accessible(int j, int i) {
 		
-		if ((this.table[i][j].gObject().equals(ObjectEnum.EMPTY)) || (this.table[i][j].gObject().equals(ObjectEnum.NULL))){
+		if ((this.table[j][i].gObject().equals(ObjectEnum.EMPTY)) || (this.table[j][i].gObject().equals(ObjectEnum.NULL))){
 			return false;
 		}
 		return true;

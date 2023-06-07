@@ -25,7 +25,7 @@ public class Shelf {
 	public void addTiles( int c, Tiles tiles) {
 		
 		for (int i=0;i< 6;i++) {
-			if(this.shelf[i][c]== null) { //da testare se funziona correttamente
+			if(this.shelf[i][c].gObject()== ObjectEnum.EMPTY) { //da testare se funziona correttamente
 				this.shelf[i][c] = tiles;
 			}
 		}
@@ -50,14 +50,14 @@ public class Shelf {
 		int CelleLibere=0;
 		
 		for (int i=0;i< 6;i++) {
-			if(this.shelf[i][j]== null) { //da testare se funziona correttamente
+			if(this.shelf[i][j].gObject().equals(ObjectEnum.EMPTY)) { //da testare se funziona correttamente
 				CelleLibere++;
 			}
 		}
 		if(CelleLibere>=nTessere){
-			return true; //significa che c'è abbastanza spazio
+			return false; //significa che c'è abbastanza spazio
 		}else {
-			return false;
+			return true;
 		}
 	}
 	

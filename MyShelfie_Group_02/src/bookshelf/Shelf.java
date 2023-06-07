@@ -23,16 +23,16 @@ public class Shelf {
 
 
 	public void addTiles( int c, Tiles tiles) {
-		int i=0;
+		int i=5;
 		boolean trovato=false;
 		do {
 			if(this.shelf[i][c].gObject()== ObjectEnum.EMPTY) { //da testare se funziona correttamente
 				trovato =true;
 			}else {
-			i++;	
+			i--;	
 			}
 			
-		}while(!trovato && i>6);
+		}while(!trovato && i<0);
 		
 		this.shelf[i][c].setColour(tiles.gObject());
 		

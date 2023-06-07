@@ -6,10 +6,37 @@ public class Tiles {
 	
 	
 
-	public void setColour(ObjectEnum colour) {
-		this.colour = colour;
-	}
+	
 
+	public void setColour(ObjectEnum colour) {
+		switch(colour) {
+		case WHITE:
+			this.colour = ObjectEnum.WHITE;
+			break;
+		case BLUE:
+			this.colour = ObjectEnum.BLUE;
+			break;
+		case PINK:
+			this.colour = ObjectEnum.PINK;
+			break;
+		case GREEN:
+			this.colour = ObjectEnum.GREEN;
+			break;
+		case YELLOW:
+			this.colour = ObjectEnum.YELLOW;
+			break;
+		case LIGHT_BLUE:
+			this.colour = ObjectEnum.LIGHT_BLUE;
+			break;
+		case EMPTY:
+			this.colour = ObjectEnum.EMPTY;
+			break;
+		case NULL:
+			this.colour = ObjectEnum.NULL;
+			break;
+		}
+		
+	}
 	public Tiles() {
 		this.colour = ObjectEnum.EMPTY;
 	}

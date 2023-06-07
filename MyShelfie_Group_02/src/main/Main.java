@@ -263,7 +263,7 @@ public class Main {
 
 				//controllo refill tabellone
 				if(livingroom.refillLivingroom()) {
-					livingroom.boardFill(bag);
+					//livingroom.boardFill(bag);
 				}
 
 			}

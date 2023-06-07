@@ -213,66 +213,66 @@ public class Board {
 		System.out.println("     " + "  A  "  + "  B  "  + "  C  " + "  D  " + "  E  " + "  F  " + "  G  " + "  H  " + "  I  ");
 		for (int k=0; k<9; k++) {
 			for(int i=0;i<9;i++) {
-				
-			
-			col=(table[k][i].gObject());
-			String let="";
-			switch(col){
-			case PINK:
-				let="  P  ";
-				break;
-			case GREEN:
-				let="  G  ";
-				break;
-			case BLUE:
-				let="  B  ";
-				break;
-			case WHITE:
-				let="  W  ";
-				break;
-			case YELLOW:
-				let="  Y  ";
-				break;
-			case LIGHT_BLUE:
-				let="  L  ";
-				break;
-			case EMPTY:
-				let="     ";
-				break;
-			case NULL:
-				let="     ";
-				break;
-			}	
-			switch(i){
-			case 0:
-				l0=let;
-				break;
-			case 1:
-				l1=let;
-				break;
-			case 2:
-				l2=let;
-				break;
-			case 3:
-				l3=let;
-				break;
-			case 4:
-				l4=let;
-				break;
-			case 5:
-				l5=let;
-				break;
-			case 6:
-				l6=let;
-				break;
-			case 7:
-				l7=let;
-				break;
-			case 8:
-				l8=let;
-				break;
 
-			}
+
+				col=(table[k][i].gObject());
+				String let="";
+				switch(col){
+				case PINK:
+					let="  P  ";
+					break;
+				case GREEN:
+					let="  G  ";
+					break;
+				case BLUE:
+					let="  B  ";
+					break;
+				case WHITE:
+					let="  W  ";
+					break;
+				case YELLOW:
+					let="  Y  ";
+					break;
+				case LIGHT_BLUE:
+					let="  L  ";
+					break;
+				case EMPTY:
+					let="     ";
+					break;
+				case NULL:
+					let="     ";
+					break;
+				}	
+				switch(i){
+				case 0:
+					l0=let;
+					break;
+				case 1:
+					l1=let;
+					break;
+				case 2:
+					l2=let;
+					break;
+				case 3:
+					l3=let;
+					break;
+				case 4:
+					l4=let;
+					break;
+				case 5:
+					l5=let;
+					break;
+				case 6:
+					l6=let;
+					break;
+				case 7:
+					l7=let;
+					break;
+				case 8:
+					l8=let;
+					break;
+
+				}
 			}
 
 			System.out.println(k + "     " +l0+l1+l2+l3+l4+l5+l6+l7+l8);
@@ -300,14 +300,18 @@ public class Board {
 					//controllo se ci sono intorno solo caselle vuote
 					if((this.table[i+1][j].gObject().equals(ObjectEnum.EMPTY)) || (this.table[i+1][j].gObject().equals(ObjectEnum.NULL)) ) {
 						if((this.table[i][j+1].gObject().equals(ObjectEnum.EMPTY)) || (this.table[i][j+1].gObject().equals(ObjectEnum.NULL))) {
-							if((this.table[i][j-1].gObject().equals(ObjectEnum.EMPTY)) || (this.table[i][j-1].gObject().equals(ObjectEnum.EMPTY))) {
-								if((this.table[i-1][j].gObject().equals(ObjectEnum.EMPTY)) || (this.table[i-1][j].gObject().equals(ObjectEnum.NULL))) {
-									refill = true;//se è true significa che quella casella ha intorno solo caselle vuote
+							if(j==0) {
+								if((this.table[i][j-1].gObject().equals(ObjectEnum.EMPTY)) || (this.table[i][j-1].gObject().equals(ObjectEnum.NULL))) {
+									if((this.table[i-1][j].gObject().equals(ObjectEnum.EMPTY)) || (this.table[i-1][j].gObject().equals(ObjectEnum.NULL))) {
+										refill = true;//se è true significa che quella casella ha intorno solo caselle vuote
+									}else {
+										refill=false;
+									}
 								}else {
 									refill=false;
 								}
 							}else {
-								refill=false;
+								refill=true;
 							}
 						}else {
 							refill=false;
@@ -315,6 +319,7 @@ public class Board {
 					}else {
 						refill=false;//se anche solo uno degli if è falso significa che c'è almeno un casella adiacente che non è vuota
 					}
+
 				}
 			}
 		}
@@ -329,25 +334,25 @@ public class Board {
 		}
 
 		//sotto
-		if((this.table[i+1][j].gObject().equals(ObjectEnum.EMPTY)) || (this.table[i-1][j].gObject().equals(ObjectEnum.NULL))   ) { 
+		if((this.table[i+1][j].gObject().equals(ObjectEnum.EMPTY)) || (this.table[i+1][j].gObject().equals(ObjectEnum.NULL))   ) { 
 			return true;
 		}
 
 		//destra
-		if((this.table[i][j+1].gObject().equals(ObjectEnum.EMPTY)) || (this.table[i-1][j].gObject().equals(ObjectEnum.NULL))   ) { 
+		if((this.table[i][j+1].gObject().equals(ObjectEnum.EMPTY)) || (this.table[i][j+1].gObject().equals(ObjectEnum.NULL))   ) { 
 			return true;
 		}
 
 		//sinistra
-		if((this.table[i][j-1].gObject().equals(ObjectEnum.EMPTY)) || (this.table[i-1][j].gObject().equals(ObjectEnum.NULL))   ) { 
+		if((this.table[i][j-1].gObject().equals(ObjectEnum.EMPTY)) || (this.table[i][j-1].gObject().equals(ObjectEnum.NULL))   ) { 
 			return true;
 		}
 
 		return false;
 	}
-	
+
 	public boolean accessible(int j, int i) {
-		
+
 		if ((this.table[j][i].gObject().equals(ObjectEnum.EMPTY)) || (this.table[j][i].gObject().equals(ObjectEnum.NULL))){
 			return false;
 		}

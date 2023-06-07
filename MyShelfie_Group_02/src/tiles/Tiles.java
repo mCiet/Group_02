@@ -37,6 +37,7 @@ public class Tiles {
 		}
 		
 	}
+	
 	public Tiles() {
 		this.colour = ObjectEnum.EMPTY;
 	}

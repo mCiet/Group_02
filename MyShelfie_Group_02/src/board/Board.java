@@ -291,61 +291,75 @@ public class Board {
 	}
 
 	public boolean refillLivingroom()	{
-		boolean refill=false;
 
 		for(int i=0;i<9;i++) {
 			for(int j=0;j<9;j++) {
 				//controllo che non sia vuota
-				if(!(this.table[i][j].gObject().equals(ObjectEnum.EMPTY))) {
+				if(!((this.table[i][j].gObject().equals(ObjectEnum.EMPTY))|| (this.table[i][j].gObject().equals(ObjectEnum.NULL)))) {
 					//controllo se ci sono intorno solo caselle vuote
-					if((this.table[i+1][j].gObject().equals(ObjectEnum.EMPTY)) || (this.table[i+1][j].gObject().equals(ObjectEnum.NULL)) ) {
-						if((this.table[i][j+1].gObject().equals(ObjectEnum.EMPTY)) || (this.table[i][j+1].gObject().equals(ObjectEnum.NULL))) {
-							if(j==0) {
-								if((this.table[i][j-1].gObject().equals(ObjectEnum.EMPTY)) || (this.table[i][j-1].gObject().equals(ObjectEnum.NULL))) {
-									if((this.table[i-1][j].gObject().equals(ObjectEnum.EMPTY)) || (this.table[i-1][j].gObject().equals(ObjectEnum.NULL))) {
-										refill = true;//se è true significa che quella casella ha intorno solo caselle vuote
-									}else {
-										refill=false;
-									}
-								}else {
-									refill=false;
-								}
-							}else {
-								refill=true;
-							}
-						}else {
-							refill=false;
+					//sotto
+					if(i!=8) {
+						if(!((this.table[i+1][j].gObject().equals(ObjectEnum.EMPTY)) || (this.table[i+1][j].gObject().equals(ObjectEnum.NULL)))) {
+							return false;
 						}
-					}else {
-						refill=false;//se anche solo uno degli if è falso significa che c'è almeno un casella adiacente che non è vuota
 					}
-
+					
+					//sopra
+					if(i!=0) {
+						if(!((this.table[i-1][j].gObject().equals(ObjectEnum.EMPTY)) || (this.table[i+1][j].gObject().equals(ObjectEnum.NULL)))) {
+							return false;
+						}
+					}
+					
+					//destra
+					if(j!=8) {
+						if(!((this.table[i][j+1].gObject().equals(ObjectEnum.EMPTY)) || (this.table[i+1][j].gObject().equals(ObjectEnum.NULL)))) {
+							return false;
+						}
+					}
+					
+					//sinistra
+					if(j!=0) {
+						if(!((this.table[i][j-1].gObject().equals(ObjectEnum.EMPTY)) || (this.table[i+1][j].gObject().equals(ObjectEnum.NULL)))) {
+							return false;
+						}
+					}
+					
 				}
 			}
 		}
-		return refill;
+				
+		return true;
 	}
 
 	public boolean freeSide(int i, int j) { //controllo freeside
 
-		//sopra
-		if((this.table[i-1][j].gObject().equals(ObjectEnum.EMPTY)) || (this.table[i-1][j].gObject().equals(ObjectEnum.NULL))   ) { 
-			return true;
+		if(i!=0) {
+			//sopra
+			if((this.table[i-1][j].gObject().equals(ObjectEnum.EMPTY)) || (this.table[i-1][j].gObject().equals(ObjectEnum.NULL))   ) { 
+				return true;
+			}
 		}
-
-		//sotto
-		if((this.table[i+1][j].gObject().equals(ObjectEnum.EMPTY)) || (this.table[i+1][j].gObject().equals(ObjectEnum.NULL))   ) { 
-			return true;
+		
+		if(i!=8) {
+			//sotto
+			if((this.table[i+1][j].gObject().equals(ObjectEnum.EMPTY)) || (this.table[i+1][j].gObject().equals(ObjectEnum.NULL))   ) { 
+				return true;
+			}
 		}
-
-		//destra
-		if((this.table[i][j+1].gObject().equals(ObjectEnum.EMPTY)) || (this.table[i][j+1].gObject().equals(ObjectEnum.NULL))   ) { 
-			return true;
+		
+		if(j!=8) {
+			//destra
+			if((this.table[i][j+1].gObject().equals(ObjectEnum.EMPTY)) || (this.table[i][j+1].gObject().equals(ObjectEnum.NULL))   ) { 
+				return true;
+			}
 		}
-
-		//sinistra
-		if((this.table[i][j-1].gObject().equals(ObjectEnum.EMPTY)) || (this.table[i][j-1].gObject().equals(ObjectEnum.NULL))   ) { 
-			return true;
+		
+		if(j!=0) {
+			//sinistra
+			if((this.table[i][j-1].gObject().equals(ObjectEnum.EMPTY)) || (this.table[i][j-1].gObject().equals(ObjectEnum.NULL))   ) { 
+				return true;
+			}
 		}
 
 		return false;

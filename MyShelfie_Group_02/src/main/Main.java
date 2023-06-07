@@ -53,8 +53,7 @@ public class Main {
 
 
 		for(int i =0; i<nGiocatori;i++) {
-			vettPlayer[i] = new Player();
-			//vettPlayer[i].getShelf().printShelf();
+			vettPlayer[i] = new Player(i);
 		}
 
 		//stampa della plancia
@@ -103,7 +102,7 @@ public class Main {
 				int col; //numero colonna
 				int colonneLibere=0; //conta le colonne in cui ci stanno le tessere scelte
 				int x1= 0,x2= 0,x3= 0 ,y1= 0,y2= 0,y3 = 0;// coordinate per le tiles
-				boolean valida,nulla; //controllo lato libero tessera
+				boolean valida; //controllo lato libero tessera
 				Scanner sc = new Scanner(System.in);
 
 				do {
@@ -130,9 +129,9 @@ public class Main {
 
 
 						do {
-							System.out.println("In che posizione si trova la tessera che vuoi prelevare? ");
+							System.out.println("In che posizione si trova la 1° tessera che vuoi prelevare? ");
 							//restiuisce riga gia verificata
-							x1=verificaRiga();
+							x1 = verificaRiga();
 							//restituise colonna in numero e verificata
 							y1 = verificaCol();
 						}while(!livingroom.accessible(x1,y1));
@@ -142,6 +141,7 @@ public class Main {
 						if(valida) {
 							if(nTessere>=2) {
 								do {
+									System.out.println("In che posizione si trova la 2° tessera che vuoi prelevare? ");
 									//restiuisce riga gia verificata
 									x2=verificaRiga();
 									//restituise colonna in numero e verificata
@@ -170,6 +170,7 @@ public class Main {
 							if(nTessere==3) {
 
 								do {
+									System.out.println("In che posizione si trova la 3° tessera che vuoi prelevare? ");
 									//restiuisce riga gia verificata
 									x3=verificaRiga();
 									//restituise colonna in numero e verificata
@@ -201,50 +202,63 @@ public class Main {
 
 					//inserimento nella shelf
 					do {
-
-						System.out.println("Inserisci la colonna in cui vuoi posizionare le tessere che hai scelto da 0 a 5");
-						col = sc.nextInt();
+						do {
+							
+							System.out.println("Inserisci la colonna in cui vuoi posizionare le tessere che hai scelto, DEVE essere un NUMERO da 0 a 4");
+							if(sc.hasNextInt()){
+								col = sc.nextInt();
+							}else {
+								sc.nextLine();
+								col=-1;
+							}
+							
+							
+							
+						}while(col<0 || col>4);
+						
 
 						piena = vettPlayer[i].getShelf().IsFullCol(col, nTessere); //controllo che colonna richesta dal giocatore sia vuota
 
-
-						for(int j=0;j<5;j++) { //scandisco le colonne per vedere se c'è almeno una libera
-							if(!(vettPlayer[i].getShelf().IsFullCol(j, nTessere))){ //se la colonna non è piena aument colonna libere
-								colonneLibere ++;
+						
+							for(int j=0;j<5;j++) { //scandisco le colonne per vedere se c'è almeno una libera
+								if(!(vettPlayer[i].getShelf().IsFullCol(j, nTessere))){ //se la colonna non è piena aument colonna libere
+									colonneLibere ++;
+								}
 							}
-						}
 
 
-						if(colonneLibere==0) {
-							System.out.println("Non puoi prendere " + nTessere + " tessere, non ci stanno in nessuna delle colonne della tua libreria. Scegli un numero di Tessere inferiore");
-						}else if(piena && colonneLibere>0){
-							System.out.println("Colonna piena reinserire una colonna valida");
-						}
-
+							if(colonneLibere==0) {
+								System.out.println("Non puoi prendere " + nTessere + " tessere, non ci stanno in nessuna delle colonne della tua libreria. Scegli un numero di Tessere inferiore");
+							}else if(piena && colonneLibere>0){
+								System.out.println("Colonna piena reinserire una colonna valida");
+							}
+						
 					}while((piena) && (colonneLibere==0)); //se shelf non è piena oppure se non ci sono colonne libere esce dal ciclo
 
 
 
 				}while(colonneLibere==0); //mi fa reinserire le tessere perchè non ho abbastanza spazio in nessun colonna
 
-				sc.close();
+				// sc.close();
 
 				//estrazione TILES e inserimento nella libreria
-				Tiles tiles1 = livingroom.getTiles(x1,y1);
+				
+				
+				vettPlayer[i].getShelf().addTiles(col, livingroom.getTiles(x1,y1)); //inserimento nella colonna corrispondete
 				livingroom.emptycell(x1, y1); //rende la cella presa vuota
-				vettPlayer[i].getShelf().addTiles(col, tiles1); //inserimento nella colonna corrispondete
+				
 
 				if(nTessere >=2) {
-					Tiles tiles2 = livingroom.getTiles(x2,y2);
+					vettPlayer[i].getShelf().addTiles(col, livingroom.getTiles(x2,y2)); //inserimento nella colonna corrispondete
 					livingroom.emptycell(x2,y2); //rende la cella presa vuota
-					vettPlayer[i].getShelf().addTiles(col, tiles2); //inserimento nella colonna corrispondete
+					
 				}
 
 				if(nTessere ==3) {
-					Tiles tiles3 = livingroom.getTiles(x3,y3);
+					vettPlayer[i].getShelf().addTiles(col, livingroom.getTiles(x3,y3)); //inserimento nella colonna corrispondete
 					livingroom.emptycell(x3,y3); //rende la cella presa vuota
-					vettPlayer[i].getShelf().addTiles(col, tiles3); //inserimento nella colonna corrispondete
 				}
+				
 				System.out.println("				");
 				System.out.println("Ora la tua shelf e' questa: ");
 				System.out.println("				");
@@ -263,7 +277,7 @@ public class Main {
 
 				//controllo refill tabellone
 				if(livingroom.refillLivingroom()) {
-					//livingroom.boardFill(bag);
+					livingroom.boardFill(bag);
 				}
 
 			}
@@ -379,14 +393,19 @@ public class Main {
 
 	public static int verificaRiga() {
 		int x;
+		
 		Scanner s = new Scanner(System.in);
 
 		do {
-			do {
-				System.out.println("Inserisci la riga, deve essere un NUMERO tra 0- 8: ");
-
-			}while(!(s.hasNextInt()));
-			x = s.nextInt();
+				System.out.println("Inserisci la riga, DEVE essere un NUMERO tra 0- 8: ");
+				if(s.hasNextInt()) {
+					x = s.nextInt();
+				}else {
+					s.nextLine();
+					x = -1;
+					
+				}
+			
 		}while(x<0 || x>8);
 
 		return x;
@@ -440,7 +459,7 @@ public class Main {
 
 
 			case "I","i":
-				y = 2;
+				y = 8;
 			break;
 
 			default:

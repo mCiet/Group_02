@@ -10,17 +10,16 @@ import cards.*;
 
 public class Player {
 
-	private static int ID; // INCREMENTO AUTOMATICO
-	public static void setID(int iD) {
-		ID = iD;
-	}
+	private int ID; // INCREMENTO AUTOMATICO
+	
 
-	private int c =0;
+	//int c =0;
 	private Shelf shelf;
 	private personal_goals personalCard;
 
-	public Player() {
-		this.ID = c++;
+	public Player(int i) {
+		//this.ID = c++;
+		this.ID = i;
 		this.shelf = new Shelf();
 		this.personalCard= genPersonalGoals();
 
@@ -31,7 +30,7 @@ public class Player {
 		return shelf;//in questo modo ritorna matrice di tiles
 	}
 
-	public static int getID() {
+	public int getID() {
 		return ID;
 	}
 

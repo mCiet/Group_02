@@ -56,7 +56,7 @@ public class Shelf {
 	public boolean IsFullCol(int j,int nTessere) {
 		int CelleLibere=0;
 		
-		for (int i=0;i< 6;i++) {
+		for (int i=0;i< 5;i++) {
 			if(this.shelf[i][j].gObject().equals(ObjectEnum.EMPTY)) { //da testare se funziona correttamente
 				CelleLibere++;
 			}

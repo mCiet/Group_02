@@ -132,8 +132,10 @@ public class Main {
 
 						}while(nTessere<1 || nTessere >3);
 
-						System.out.println("Selezione le tessere nell'odrine in cui vuoi inserirle nella tua libreria");
-
+						System.out.println("				");
+						System.out.println("Selezione le tessere nell'ordine in cui vuoi inserirle nella tua libreria");
+						System.out.println("				");
+						
 						do {
 							System.out.println("In che posizione si trova la 1° tessera che vuoi prelevare? ");
 							//restiuisce riga gia verificata
@@ -173,7 +175,7 @@ public class Main {
 
 								}else {
 									valida = false;
-									System.out.println("La tiles scelta non ha nessun lato libero");
+									System.out.println("La tessera scelta non ha nessun lato libero");
 								}
 
 							}
@@ -288,10 +290,7 @@ public class Main {
 				System.out.println("Ora la tua shelf e' questa: ");
 				System.out.println("				");
 				vettPlayer[i].getShelf().printShelf();
-				System.out.println("				");
-				System.out.println("Ecco la vostra plancia aggiornata: ");
-				System.out.println("				");
-				livingroom.printBoard();
+				
 
 				//controllo tessere comuni
 
@@ -341,8 +340,15 @@ public class Main {
 
 				//controllo refill tabellone
 				if(livingroom.refillLivingroom()) {
+					System.out.println("Non ci sono più tessere adiacenti "
+							+ "faccio il riempimento della plancia");
 					livingroom.boardFill(bag);
 				}
+				System.out.println("				");
+				System.out.println("Ecco la vostra plancia aggiornata: ");
+				System.out.println("				");
+				livingroom.printBoard();
+				
 				System.out.println("				");
 				System.out.println("				");
 				System.out.println("				");
@@ -398,7 +404,7 @@ public class Main {
 		
 		System.out.println("				");
 		System.out.println("HA VINTO LA PARTITA");
-		System.out.println("CON BEN " + max + " PUNTI");
+		System.out.println("CON " + max + " PUNTI");
 		System.out.println("IL GIOCATORE NUMERO: ");
 		System.out.println("				");
 		System.out.println(winPlayer.getID()+1);

@@ -306,21 +306,21 @@ public class Board {
 					
 					//sopra
 					if(i!=0) {
-						if(!((this.table[i-1][j].gObject().equals(ObjectEnum.EMPTY)) || (this.table[i+1][j].gObject().equals(ObjectEnum.NULL)))) {
+						if(!((this.table[i-1][j].gObject().equals(ObjectEnum.EMPTY)) || (this.table[i-1][j].gObject().equals(ObjectEnum.NULL)))) {
 							return false;
 						}
 					}
 					
 					//destra
 					if(j!=8) {
-						if(!((this.table[i][j+1].gObject().equals(ObjectEnum.EMPTY)) || (this.table[i+1][j].gObject().equals(ObjectEnum.NULL)))) {
+						if(!((this.table[i][j+1].gObject().equals(ObjectEnum.EMPTY)) || (this.table[i][j+1].gObject().equals(ObjectEnum.NULL)))) {
 							return false;
 						}
 					}
 					
 					//sinistra
 					if(j!=0) {
-						if(!((this.table[i][j-1].gObject().equals(ObjectEnum.EMPTY)) || (this.table[i+1][j].gObject().equals(ObjectEnum.NULL)))) {
+						if(!((this.table[i][j-1].gObject().equals(ObjectEnum.EMPTY)) || (this.table[i][j-1].gObject().equals(ObjectEnum.NULL)))) {
 							return false;
 						}
 					}

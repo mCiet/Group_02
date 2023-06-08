@@ -1,5 +1,9 @@
 package tokens;
 
+import player.Player;
+import tiles.*;
+import bookshelf.*;
+
 public class Tokens {
 	
 	private int score;
@@ -49,7 +53,80 @@ public class Tokens {
 		return false;
 	}
 	
+	public int nearTiles(Player player) {
+		//controlla e assegna i punti per le tessere vicine
+		Tiles[][] shelf = player.getShelf().getShelf(); //restituisce matrice di tiles
+		
+		//controllo per ogni colore
+		//VERDE
+		int c, punti =0;
+		c = countcolor(shelf, ObjectEnum.GREEN);
+		
+		if(c == 3) {
+			punti = 2;
+		}
+		if(c==4) {
+			punti = 3;
+		}
+		if(c==5) {
+			punti = 5;
+		}
+		if(c>=6){
+			punti = 8;
+		}
+		
+		return punti;
+		
+	}
 	
+	public int countcolor(Tiles[][] shelf,ObjectEnum colore) {
+		
+		int c=0;
+		for(int i =0;i<6;i++) {
+			for(int j=0;j<5;j++) {
+				if(shelf[i][j].gObject().equals(colore)) {
+					if(nearcolor(i,j,shelf,colore)) {
+						c++;
+					}
+				}
+			}
+		}
+		return c;
+	}
+	
+	public boolean nearcolor(int i, int j, Tiles [][] shelf, ObjectEnum colour) {
+		
+		//sopra
+		if(i!=0) {
+			if(shelf[i+1][j].gObject().equals(colour)) {
+				return true;
+			}
+		}
+		
+		//sotto
+		if(i!= 5) {
+			if(shelf[i-1][j].gObject().equals(colour)) {
+				return true;
+			}
+		}
+		
+		//sinistra
+		if(j!=0) {
+			if(shelf[i][j-1].gObject().equals(colour)) {
+				return true;
+			}
+		}
+		
+		//destra
+		if(j!=4) {
+			if(shelf[i][j+1].gObject().equals(colour)) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+		
 	
 	public int TokenHierarchy( int nPlayer) {
 		

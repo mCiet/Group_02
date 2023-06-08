@@ -1,5 +1,3 @@
-/board/
-/bookshelf/
-/tiles/
+/tokens/
 /main/
-/player/
+/bookshelf/

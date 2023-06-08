@@ -79,6 +79,7 @@ public class Main {
 
 		while(!endgame(vettPlayer,nGiocatori)) {//controllo che shelf non siano piene
 
+			
 			for(int i=0;i<4;i++) { //scandisce il turno di ogni giocatore
 
 

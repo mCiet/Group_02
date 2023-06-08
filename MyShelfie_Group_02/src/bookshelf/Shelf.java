@@ -29,10 +29,10 @@ public class Shelf {
 			if(this.shelf[i][c].gObject()== ObjectEnum.EMPTY) { //da testare se funziona correttamente
 				trovato =true;
 			}else {
-			i--;	
+				i--;	
 			}
 			
-		}while(!trovato && i<0);
+		}while(!trovato && i>0);
 		
 		this.shelf[i][c].setColour(tiles.gObject());
 		

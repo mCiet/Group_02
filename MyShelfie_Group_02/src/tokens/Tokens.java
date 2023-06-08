@@ -58,9 +58,42 @@ public class Tokens {
 		Tiles[][] shelf = player.getShelf().getShelf(); //restituisce matrice di tiles
 		
 		//controllo per ogni colore
-		//VERDE
-		int c, punti =0;
-		c = countcolor(shelf, ObjectEnum.GREEN);
+		int c=0;
+		
+		//green
+		c = c + countcolor(shelf, ObjectEnum.GREEN);
+		
+		//pink
+		c = c + countcolor(shelf, ObjectEnum.PINK);
+		
+		//BLUE
+		c = c + countcolor(shelf, ObjectEnum.BLUE);
+		
+		//LIGHT_BLUE
+		c = c + countcolor(shelf, ObjectEnum.LIGHT_BLUE);
+		
+		//WHITE
+		c = c + countcolor(shelf, ObjectEnum.WHITE);
+		
+		//YELLOW
+		c = c + countcolor(shelf, ObjectEnum.YELLOW);
+		
+		return c;
+		
+	}
+	
+	public int countcolor(Tiles[][] shelf,ObjectEnum colore) {
+		
+		int c=0,punti = 0;
+		for(int i =0;i<6;i++) {
+			for(int j=0;j<5;j++) {
+				if(shelf[i][j].gObject().equals(colore)) {
+					if(nearcolor(i,j,shelf,colore)) {
+						c++;
+					}
+				}
+			}
+		}
 		
 		if(c == 3) {
 			punti = 2;
@@ -75,23 +108,8 @@ public class Tokens {
 			punti = 8;
 		}
 		
+		
 		return punti;
-		
-	}
-	
-	public int countcolor(Tiles[][] shelf,ObjectEnum colore) {
-		
-		int c=0;
-		for(int i =0;i<6;i++) {
-			for(int j=0;j<5;j++) {
-				if(shelf[i][j].gObject().equals(colore)) {
-					if(nearcolor(i,j,shelf,colore)) {
-						c++;
-					}
-				}
-			}
-		}
-		return c;
 	}
 	
 	public boolean nearcolor(int i, int j, Tiles [][] shelf, ObjectEnum colour) {

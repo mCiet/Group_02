@@ -187,7 +187,7 @@ public class Main {
 								if(livingroom.freeSide(x3, y3)) {
 									if(((x3== x1) && (y3 == y1-1)) || ((x3== x1) && (y3 == y2+1)) ) { //significa che facendo una riga
 										valida = true;
-									}else if(((x3 == x2-1) && (y3 == y1)) || ((x3 == x1+1) && (y3 == y1)) ){ //sigifiva che sta facendo la colonna
+									}else if(((x3 == x2-1) && (y3 == y1)) || ((x3 == x2+1) && (y3 == y1)) ){ //sigifiva che sta facendo la colonna
 										valida = true;
 									}else {
 										valida = false;
@@ -325,10 +325,14 @@ public class Main {
 				if(livingroom.refillLivingroom()) {
 					livingroom.boardFill(bag);
 				}
+				System.out.println("				");
+				System.out.println("				");
+				System.out.println("				");
+				System.out.println("				");
 
 			}
 
-			endgame=!endgame(vettPlayer,nGiocatori);
+			//endgame=!endgame(vettPlayer,nGiocatori);
 
 		}
 
@@ -346,12 +350,41 @@ public class Main {
 
 
 		//conteggio punti manca punto primo a finire
-
-
+		
+		//Conteggio tessere colori uguali vicini 
+		for(int i=0;i<nGiocatori;i++) {
+			score = nearTiles(vettPlayer[i]);
+			vettPlayer[i].setScore(score);
+		}
 
 
 		//stampa dei punteggi
-
+		
+		System.out.println("   ");
+		System.out.println("FINE PARTITA");
+		System.out.println("				");
+		System.out.println("TOTALE PUNTI PER OGNI GIOCATORE");
+		
+		int max = 0;
+		Player winPlayer = new Player(2);
+		
+		for(int i =0;i<=nGiocatori;i++) {
+			System.out.println("Giocatore: " + i+1 + " ha totalizzato: " + vettPlayer[i].getScore() + " punti");
+			if(vettPlayer[i].getScore()>max) {
+				max = vettPlayer[i].getScore();
+				winPlayer = vettPlayer[i];
+			}
+		}
+		
+		//stampa vincitore
+		
+		System.out.println("				");
+		System.out.println("HA VINTO LA PARTITA");
+		System.out.println("CON BEN " + max + " PUNTI");
+		System.out.println("IL GIOCATORE NUMERO: ");
+		System.out.println("				");
+		System.out.println(winPlayer.getID()+1);
+		
 
 	}
 
@@ -374,6 +407,98 @@ public class Main {
 
 
 
+	}
+	
+	public static int nearTiles(Player player) {
+		//controlla e assegna i punti per le tessere vicine
+		Tiles[][] shelf = player.getShelf().getShelf(); //restituisce matrice di tiles
+		
+		//controllo per ogni colore
+		int c=0;
+		
+		//green
+		c = c + countcolor(shelf, ObjectEnum.GREEN);
+		
+		//pink
+		c = c + countcolor(shelf, ObjectEnum.PINK);
+		
+		//BLUE
+		c = c + countcolor(shelf, ObjectEnum.BLUE);
+		
+		//LIGHT_BLUE
+		c = c + countcolor(shelf, ObjectEnum.LIGHT_BLUE);
+		
+		//WHITE
+		c = c + countcolor(shelf, ObjectEnum.WHITE);
+		
+		//YELLOW
+		c = c + countcolor(shelf, ObjectEnum.YELLOW);
+		
+		return c;
+		
+	}
+	
+	public static int countcolor(Tiles[][] shelf,ObjectEnum colore) {
+		
+		int c=0,punti = 0;
+		for(int i =0;i<6;i++) {
+			for(int j=0;j<5;j++) {
+				if(shelf[i][j].gObject().equals(colore)) {
+					if(nearcolor(i,j,shelf,colore)) {
+						c++;
+					}
+				}
+			}
+		}
+		
+		if(c == 3) {
+			punti = 2;
+		}
+		if(c==4) {
+			punti = 3;
+		}
+		if(c==5) {
+			punti = 5;
+		}
+		if(c>=6){
+			punti = 8;
+		}
+		
+		
+		return punti;
+	}
+	
+	public static boolean nearcolor(int i, int j, Tiles [][] shelf, ObjectEnum colour) {
+		
+		//sopra
+		if(i!=0) {
+			if(shelf[i+1][j].gObject().equals(colour)) {
+				return true;
+			}
+		}
+		
+		//sotto
+		if(i!= 5) {
+			if(shelf[i-1][j].gObject().equals(colour)) {
+				return true;
+			}
+		}
+		
+		//sinistra
+		if(j!=0) {
+			if(shelf[i][j-1].gObject().equals(colour)) {
+				return true;
+			}
+		}
+		
+		//destra
+		if(j!=4) {
+			if(shelf[i][j+1].gObject().equals(colour)) {
+				return true;
+			}
+		}
+		
+		return false;
 	}
 
 	public static int genCommonGoals() {

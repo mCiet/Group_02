@@ -392,7 +392,7 @@ public class Main {
 		int max = 0;
 		Player winPlayer = new Player(2);
 		
-		for(int i =0;i<=nGiocatori;i++) {
+		for(int i =0;i<nGiocatori;i++) {
 			System.out.println("Giocatore: " + i+1 + " ha totalizzato: " + vettPlayer[i].getScore() + " punti");
 			if(vettPlayer[i].getScore()>max) {
 				max = vettPlayer[i].getScore();
@@ -496,14 +496,14 @@ public class Main {
 		
 		//sopra
 		if(i!=0) {
-			if(shelf[i+1][j].gObject().equals(colour)) {
+			if(shelf[i-1][j].gObject().equals(colour)) {
 				return true;
 			}
 		}
 		
 		//sotto
 		if(i!= 5) {
-			if(shelf[i-1][j].gObject().equals(colour)) {
+			if(shelf[i+1][j].gObject().equals(colour)) {
 				return true;
 			}
 		}

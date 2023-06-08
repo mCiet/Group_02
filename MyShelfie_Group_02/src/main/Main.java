@@ -32,8 +32,6 @@ public class Main {
 
 			}
 
-
-			//scn.close();
 		}while(nGiocatori<2 || nGiocatori>4);
 
 
@@ -134,6 +132,7 @@ public class Main {
 
 						}while(nTessere<1 || nTessere >3);
 
+						System.out.println("Selezione le tessere nell'odrine in cui vuoi inserirle nella tua libreria");
 
 						do {
 							System.out.println("In che posizione si trova la 1° tessera che vuoi prelevare? ");
@@ -157,17 +156,24 @@ public class Main {
 
 
 								if(livingroom.freeSide(x2, y2)) {
-
-									if(((x2== x1) && (y2 == y1-1)) || ((x2== x1) && (y2 == y1+1)) ) { //significa che facendo una riga
-										valida = true;
-									}else if(((x2 == x1-1) && (y2 == y1)) || ((x2 == x1+1) && (y2 == y1)) ){ //sigifiva che sta facendo la colonna
-										valida = true;
+									if(x2!=x1 || y2 !=y1) {
+										if(((x2== x1) && (y2 == y1-1)) || ((x2== x1) && (y2 == y1+1)) ) { //significa che facendo una riga
+											valida = true;
+										}else if(((x2 == x1-1) && (y2 == y1)) || ((x2 == x1+1) && (y2 == y1)) ){ //sigifiva che sta facendo la colonna
+											valida = true;
+										}else {
+											valida = false;
+											System.out.println("Devi prendere le tue caselle in modo che formino una riga o una colonna");
+										}
 									}else {
+										System.out.println("Non è possibile inserire due caselle uguali");
 										valida = false;
-									}	
+									}
+										
 
 								}else {
 									valida = false;
+									System.out.println("La tiles scelta non ha nessun lato libero");
 								}
 
 							}
@@ -184,26 +190,34 @@ public class Main {
 									y3 = verificaCol();	
 								}while(!livingroom.accessible(x3,y3));
 
-								if(livingroom.freeSide(x3, y3)) {
-									if(((x3== x1) && (y3 == y1-1)) || ((x3== x1) && (y3 == y2+1)) ) { //significa che facendo una riga
-										valida = true;
-									}else if(((x3 == x2-1) && (y3 == y1)) || ((x3 == x2+1) && (y3 == y1)) ){ //sigifiva che sta facendo la colonna
-										valida = true;
+								if((x3!=x1 && x3 != x2)|| (y3!=y1 && y3 != y2)) {
+									if(livingroom.freeSide(x3, y3)) {
+										if(((x3== x1) && (y3 == y1-1)) || ((x3== x1) && (y3 == y2+1)) ) { //significa che facendo una riga
+											valida = true;
+										}else if(((x3 == x2-1) && (y3 == y1)) || ((x3 == x2+1) && (y3 == y1)) ){ //sigifiva che sta facendo la colonna
+											valida = true;
+										}else {
+											valida = false;
+											System.out.println("Devi prendere le tue caselle in modo che formino una riga o una colonna");
+										}
 									}else {
+										System.out.println("La tiles scelta non ha nessun lato libero");
 										valida = false;
 									}
-
 								}else {
 									valida = false;
+									System.out.println("Non è possibile inserire due caselle uguali");
 								}
+									
+								
 
 
 							}
 						}
 
-						if(!valida){
+						/*if(!valida){
 							System.out.println("Posizione non corretta, reinserire un numero di tessere inferiore o cambiare la posizione");
-						}
+						}*/
 
 					}while(!valida);
 
@@ -214,9 +228,13 @@ public class Main {
 							System.out.println("Inserisci la colonna in cui vuoi posizionare le tessere che hai scelto, DEVE essere un NUMERO da 0 a 4");
 							if(sc.hasNextInt()){
 								col = sc.nextInt();
+								if(col<0 || col>4) {
+									System.out.println("Devi inserire un valore tra 0-4");
+								}
 							}else {
 								sc.nextLine();
 								col=-1;
+								System.out.println("Devi inserire un valore numerico, reinserisci la colonna");
 							}
 
 
@@ -240,7 +258,7 @@ public class Main {
 							System.out.println("Colonna piena reinserire una colonna valida");
 						}
 
-					}while((piena) && (colonneLibere==0)); //se shelf non è piena oppure se non ci sono colonne libere esce dal ciclo
+					}while((piena) && (colonneLibere>0)); //se shelf non è piena oppure se non ci sono colonne libere esce dal ciclo
 
 
 

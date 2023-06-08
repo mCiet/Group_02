@@ -16,13 +16,13 @@ public class Player {
 	//int c =0;
 	private Shelf shelf;
 	private personal_goals personalCard;
-
+	private int score;
 	public Player(int i) {
 		//this.ID = c++;
 		this.ID = i;
 		this.shelf = new Shelf();
 		this.personalCard= genPersonalGoals();
-
+		this.setScore(0);
 
 	}
 
@@ -76,6 +76,14 @@ public class Player {
 
 		return goals;
 
+	}
+
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = this.score + score; //incremnete il valore
 	}
 
 

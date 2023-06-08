@@ -308,6 +308,7 @@ public class Main {
 
 		for(int i=0;i<nPlayer;i++) {
 			if((vettPlayer[i].getShelf().Isfull())) {
+				vettPlayer[i].setScore(1); //asseggno token fine partita
 				return true;
 			}
 		}

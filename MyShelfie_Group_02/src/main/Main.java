@@ -56,6 +56,11 @@ public class Main {
 			vettPlayer[i] = new Player(i);
 		}
 
+		//generazione obbiettivi personali
+
+		genPersonalGoals(nGiocatori,vettPlayer);
+
+
 		//stampa della plancia
 		System.out.println("Ecco la vostra plancia: ");
 		livingroom.printBoard();
@@ -67,6 +72,7 @@ public class Main {
 		do {
 			comGoals2 = genCommonGoals();
 		} while (comGoals2 == comGoals1);
+		int nComGolasMake = 0;
 		System.out.println("   ");
 		System.out.println("OBBIETTIVO COMUNE 1:");
 		System.out.println("				");
@@ -75,12 +81,12 @@ public class Main {
 		System.out.println("OBBIETTIVO COMUNE 2:");
 		System.out.println("				");
 		showCommonGoals(comGoals2);
-
+		boolean endgame =false;
 
 		while(!endgame(vettPlayer,nGiocatori)) {//controllo che shelf non siano piene
 
-			
-			for(int i=0;i<4;i++) { //scandisce il turno di ogni giocatore
+
+			for(int i=0;i<nGiocatori;i++) { //scandisce il turno di ogni giocatore
 
 
 
@@ -204,7 +210,7 @@ public class Main {
 					//inserimento nella shelf
 					do {
 						do {
-							
+
 							System.out.println("Inserisci la colonna in cui vuoi posizionare le tessere che hai scelto, DEVE essere un NUMERO da 0 a 4");
 							if(sc.hasNextInt()){
 								col = sc.nextInt();
@@ -212,28 +218,28 @@ public class Main {
 								sc.nextLine();
 								col=-1;
 							}
-							
-							
-							
+
+
+
 						}while(col<0 || col>4);
-						
+
 
 						piena = vettPlayer[i].getShelf().IsFullCol(col, nTessere); //controllo che colonna richesta dal giocatore sia vuota
 
-						
-							for(int j=0;j<5;j++) { //scandisco le colonne per vedere se c'è almeno una libera
-								if(!(vettPlayer[i].getShelf().IsFullCol(j, nTessere))){ //se la colonna non è piena aument colonna libere
-									colonneLibere ++;
-								}
+
+						for(int j=0;j<5;j++) { //scandisco le colonne per vedere se c'è almeno una libera
+							if(!(vettPlayer[i].getShelf().IsFullCol(j, nTessere))){ //se la colonna non è piena aument colonna libere
+								colonneLibere ++;
 							}
+						}
 
 
-							if(colonneLibere==0) {
-								System.out.println("Non puoi prendere " + nTessere + " tessere, non ci stanno in nessuna delle colonne della tua libreria. Scegli un numero di Tessere inferiore");
-							}else if(piena && colonneLibere>0){
-								System.out.println("Colonna piena reinserire una colonna valida");
-							}
-						
+						if(colonneLibere==0) {
+							System.out.println("Non puoi prendere " + nTessere + " tessere, non ci stanno in nessuna delle colonne della tua libreria. Scegli un numero di Tessere inferiore");
+						}else if(piena && colonneLibere>0){
+							System.out.println("Colonna piena reinserire una colonna valida");
+						}
+
 					}while((piena) && (colonneLibere==0)); //se shelf non è piena oppure se non ci sono colonne libere esce dal ciclo
 
 
@@ -243,23 +249,23 @@ public class Main {
 				// sc.close();
 
 				//estrazione TILES e inserimento nella libreria
-				
-				
+
+
 				vettPlayer[i].getShelf().addTiles(col, livingroom.getTiles(x1,y1)); //inserimento nella colonna corrispondete
 				livingroom.emptycell(x1, y1); //rende la cella presa vuota
-				
+
 
 				if(nTessere >=2) {
 					vettPlayer[i].getShelf().addTiles(col, livingroom.getTiles(x2,y2)); //inserimento nella colonna corrispondete
 					livingroom.emptycell(x2,y2); //rende la cella presa vuota
-					
+
 				}
 
 				if(nTessere ==3) {
 					vettPlayer[i].getShelf().addTiles(col, livingroom.getTiles(x3,y3)); //inserimento nella colonna corrispondete
 					livingroom.emptycell(x3,y3); //rende la cella presa vuota
 				}
-				
+
 				System.out.println("				");
 				System.out.println("Ora la tua shelf e' questa: ");
 				System.out.println("				");
@@ -271,7 +277,46 @@ public class Main {
 
 				//controllo tessere comuni
 
-
+				if(Card_common.checkCommonGoals(comGoals1,vettPlayer[i].getShelf())) {
+					switch(nComGolasMake) {
+					case 0:
+						vettPlayer[i].setScore(8);
+						nComGolasMake++;
+						break;
+					case 1:
+						vettPlayer[i].setScore(6);
+						nComGolasMake++;
+						break;
+					case 2:
+						vettPlayer[i].setScore(4);
+						nComGolasMake++;
+						break;
+					case 3:
+						vettPlayer[i].setScore(2);
+						nComGolasMake++;
+						break;
+					}
+				}
+				if(Card_common.checkCommonGoals(comGoals2,vettPlayer[i].getShelf())) {
+					switch(nComGolasMake) {
+					case 0:
+						vettPlayer[i].setScore(8);
+						nComGolasMake++;
+						break;
+					case 1:
+						vettPlayer[i].setScore(6);
+						nComGolasMake++;
+						break;
+					case 2:
+						vettPlayer[i].setScore(4);
+						nComGolasMake++;
+						break;
+					case 3:
+						vettPlayer[i].setScore(2);
+						nComGolasMake++;
+						break;
+					}
+				}
 
 
 
@@ -283,13 +328,25 @@ public class Main {
 
 			}
 
+			endgame=!endgame(vettPlayer,nGiocatori);
+
 		}
 
 
-		//controllo carte personali
+		//controllo obbiettivi personali
+
+		int score=0;
+		personal_goals pGoals;
+
+		for(int i=0;i<nGiocatori;i++) {
+			pGoals=vettPlayer[i].getPersonalGoals();
+			score=pGoals.obb_raggiunto(vettPlayer[i].getShelf());
+			vettPlayer[i].setScore(score);
+		}
 
 
-		//conteggio punti
+		//conteggio punti manca punto primo a finire
+
 
 
 
@@ -395,19 +452,19 @@ public class Main {
 
 	public static int verificaRiga() {
 		int x;
-		
+
 		Scanner s = new Scanner(System.in);
 
 		do {
-				System.out.println("Inserisci la riga, DEVE essere un NUMERO tra 0- 8: ");
-				if(s.hasNextInt()) {
-					x = s.nextInt();
-				}else {
-					s.nextLine();
-					x = -1;
-					
-				}
-			
+			System.out.println("Inserisci la riga, DEVE essere un NUMERO tra 0- 8: ");
+			if(s.hasNextInt()) {
+				x = s.nextInt();
+			}else {
+				s.nextLine();
+				x = -1;
+
+			}
+
 		}while(x<0 || x>8);
 
 		return x;
@@ -419,7 +476,7 @@ public class Main {
 		Scanner s = new Scanner(System.in);
 
 		do {
-			System.out.println("inserisci la colonna tra A-I: ");
+			System.out.println("Inserisci la colonna tra A-I: ");
 			col = s.next();
 
 			//assegnazione lettera corrispondente
@@ -472,6 +529,54 @@ public class Main {
 		}while(y<0);
 
 		return y;
+	}
+
+
+	public static void genPersonalGoals(int nGioc, Player[] vett) {
+
+		int[] numeriCasuali = new int[nGioc];
+		Random random = new Random();
+		Set<Integer> numeriGenerati = new HashSet<>();
+
+		int numeroGenerato;
+		for (int i = 0; i < nGioc; i++) {
+			do {
+				numeroGenerato = random.nextInt(12) + 1;
+			} while (numeriGenerati.contains(numeroGenerato));
+
+			numeriCasuali[i] = numeroGenerato;
+			numeriGenerati.add(numeroGenerato);
+		}
+		for(int i = 0; i < nGioc; i++) {
+			for (int numero : numeriCasuali) {
+				switch(numero) {
+				case 1:
+					vett[i].setPersonalCard(personal_goals.GOALS1);
+				case 2:
+					vett[i].setPersonalCard(personal_goals.GOALS2);
+				case 3:
+					vett[i].setPersonalCard(personal_goals.GOALS3);
+				case 4:
+					vett[i].setPersonalCard(personal_goals.GOALS4);
+				case 5:
+					vett[i].setPersonalCard(personal_goals.GOALS5);
+				case 6:
+					vett[i].setPersonalCard(personal_goals.GOALS6);
+				case 7:
+					vett[i].setPersonalCard(personal_goals.GOALS7);
+				case 8:
+					vett[i].setPersonalCard(personal_goals.GOALS8);
+				case 9:
+					vett[i].setPersonalCard(personal_goals.GOALS9);
+				case 10:
+					vett[i].setPersonalCard(personal_goals.GOALS10);
+				case 11:
+					vett[i].setPersonalCard(personal_goals.GOALS11);
+				case 12:
+					vett[i].setPersonalCard(personal_goals.GOALS12);
+				}
+			}
+		}
 	}
 
 

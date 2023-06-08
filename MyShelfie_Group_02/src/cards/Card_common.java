@@ -7,16 +7,19 @@ import tiles.*;
 
 public class Card_common {
 
-	Tiles [][] shelf = new Tiles[6][5];
+	/*Tiles [][] shelf = new Tiles[6][5];
 
 	public Card_common(Tiles[][] shelf) { //passo da main la matrice di tiles al posto che direttamente la shelf
 		this.shelf = shelf;
-	}
+	}*/
 	
 
 
-	public boolean checkCommonGoals(int nGoals) {
+	public static boolean checkCommonGoals(int nGoals, Shelf ShelfGio) {
 		boolean verifica=false;
+		Tiles [][] shelf;
+		shelf=ShelfGio.getShelf();
+		
 		boolean pink=false,yellow=false,blue=false,light_blue=false,green=false,white=false;
 		switch (nGoals) {
 		// controllo in base al numero di obbiettivo comune se è stato raggiunto 
@@ -26,7 +29,7 @@ public class Card_common {
 			int cont=0;
 			for (int k=0; k<5; k++) { // il ciclo controlla una riga e colonna in meno perchè sarebbe inutile riga 5 e colonna 4 già controllate con riga e colonan precendente
 				for(int i=0; i<4; i++) {//
-					if((this.shelf[k][i]).equals(this.shelf[k][i+1]) && (this.shelf[k][i+1]).equals(this.shelf[k+1][i]) && (this.shelf[k+1][i]).equals(this.shelf[k+1][i+1]) ) {
+					if((shelf[k][i]).equals(shelf[k][i+1]) && (shelf[k][i+1]).equals(shelf[k+1][i]) && (shelf[k+1][i]).equals(shelf[k+1][i+1]) ) {
 						cont++;
 					}
 				}
@@ -52,7 +55,7 @@ public class Card_common {
 				white=false;
 				contTipi1=0;
 				while(k1<6) {
-					colour1=this.shelf[k1][i1].gObject();
+					colour1=shelf[k1][i1].gObject();
 					switch(colour1) {
 					case PINK:
 						if(!pink){
@@ -131,7 +134,7 @@ public class Card_common {
 				contTipi4=1;
 				cNotFull=false;
 				for(int i4=0; i4<6;i4++) {
-					if((this.shelf[i4][k4]).isEmpty()){
+					if((shelf[i4][k4]).isEmpty()){
 						cNotFull=true;
 					}
 				}
@@ -145,37 +148,43 @@ public class Card_common {
 					for(int j4=0; j4<6;j4++) {
 
 
-						colour4=this.shelf[j4][k4].gObject();
+						colour4=shelf[j4][k4].gObject();
 						switch(colour4) {
 						case PINK:
 							if(!pink){
 								pink=true;
 								contTipi4++;
+								break;
 							}		
 						case GREEN:
 							if(!green){
 								green=true;
 								contTipi4++;
+								break;
 							}
 						case BLUE:
 							if(!blue){
 								blue=true;
 								contTipi4++;
+								break;
 							}
 						case WHITE:
 							if(!white){
 								white=true;
 								contTipi4++;
+								break;
 							}
 						case YELLOW:
 							if(!yellow){
 								yellow=true;
 								contTipi4++;
+								break;
 							}
 						case LIGHT_BLUE:
 							if(!pink){
 								light_blue=true;
 								contTipi4++;
+								break;
 							}
 						}		
 					}
@@ -203,7 +212,7 @@ public class Card_common {
 				white=false;
 				contTipi5=0;
 				while(k5<5 && cont5<2) {
-					colour5=this.shelf[i5][k5].gObject();
+					colour5=shelf[i5][k5].gObject();
 					switch(colour5) {
 					case PINK:
 						if(!pink){
@@ -279,48 +288,55 @@ public class Card_common {
 				rNotFull=false;
 				contTipi6=0;
 				for(int i6=0; i6<5;i6++) {
-					if((this.shelf[k6][i6]).isEmpty()){
+					if((shelf[k6][i6]).isEmpty()){
 						rNotFull=true;
 					}
 				}
 				if(!rNotFull) {
 					for(int j6=0; j6<5;j6++) {
-						colour6=this.shelf[k6][j6].gObject();
+						colour6=shelf[k6][j6].gObject();
 						switch(colour6) {
 						case PINK:
 							if(!pink){
 								pink=true;
 								contTipi6++;
+								break;
 							}		
 						case GREEN:
 							if(!green){
 								pink=true;
 								contTipi6++;
+								break;
 							}
 						case BLUE:
 							if(!blue){
 								pink=true;
 								contTipi6++;
+								break;
 							}
 						case WHITE:
 							if(!white){
 								pink=true;
 								contTipi6++;
+								break;
 							}
 						case YELLOW:
 							if(!yellow){
 								pink=true;
 								contTipi6++;
+								break;
 							}
 						case LIGHT_BLUE:
 							if(!pink){
 								pink=true;
 								contTipi6++;
+								break;
 							}
 						}						
 					}
 					if(contTipi6<=3)
 						contRig++;
+					
 				}
 			}
 			if(contRig>=4) {
@@ -331,7 +347,7 @@ public class Card_common {
 
 		case 8:
 			
-			if((this.shelf[0][0]).equals(this.shelf[0][4]) && (this.shelf[0][4]).equals(this.shelf[5][4]) && (this.shelf[5][4]).equals(this.shelf[5][0])) {
+			if((shelf[0][0]).equals(shelf[0][4]) && (shelf[0][4]).equals(shelf[5][4]) && (shelf[5][4]).equals(shelf[5][0])) {
 				verifica=true;
 			}
 			break;
@@ -344,21 +360,28 @@ public class Card_common {
 
 			for (int k8=0; k8<6; k8++) { 
 				for(int i8=0; i8<5; i8++) {
-					colour=this.shelf[k8][i8].gObject();
+					colour=shelf[k8][i8].gObject();
 					switch(colour) {
 					case PINK:
 						pink8++;
+						break;
 					case GREEN:
 						green8++;
+						break;
 					case BLUE:
 						blue8++;
+						break;
 					case WHITE:
 						white8++;
+						break;
 					case YELLOW:
 						yellow8++;
+						break;
 					case LIGHT_BLUE:
 						light_blue8++;
+						break;
 					case EMPTY:	
+						break;
 					}
 				}
 			}
@@ -387,7 +410,7 @@ public class Card_common {
 			
 			for (int k9=0; k9<4; k9++) { 
 				for(int i9=0; i9<3; i9++) {
-					if((this.shelf[i9][k9]).equals(this.shelf[i9][k9+2]) && (this.shelf[i9][k9+2]).equals(this.shelf[i9+1][k9+1]) && (this.shelf[i9+1][k9+1]).equals(this.shelf[i9+2][k9]) && (this.shelf[i9+2][k9]).equals(this.shelf[i9+2][k9+2])) {
+					if((shelf[i9][k9]).equals(shelf[i9][k9+2]) && (shelf[i9][k9+2]).equals(shelf[i9+1][k9+1]) && (shelf[i9+1][k9+1]).equals(shelf[i9+2][k9]) && (shelf[i9+2][k9]).equals(shelf[i9+2][k9+2])) {
 						verifica=true;
 					}
 				}
@@ -400,11 +423,11 @@ public class Card_common {
 		case 11:
 		
 			for (int k10=0; k10<2; k10++) { 
-				if((this.shelf[k10][0]).equals(this.shelf[k10+1][1]) && (this.shelf[k10+1][1]).equals(this.shelf[k10+2][2]) && (this.shelf[k10+2][2]).equals(this.shelf[k10+3][3]) && (this.shelf[k10+3][3]).equals(this.shelf[k10+4][4])) {
+				if((shelf[k10][0]).equals(shelf[k10+1][1]) && (shelf[k10+1][1]).equals(shelf[k10+2][2]) && (shelf[k10+2][2]).equals(shelf[k10+3][3]) && (shelf[k10+3][3]).equals(shelf[k10+4][4])) {
 					verifica=true;	
 					break;
 				}
-				else if((this.shelf[k10][4]).equals(this.shelf[k10+1][3]) && (this.shelf[k10+1][3]).equals(this.shelf[k10+2][2]) && (this.shelf[k10+2][2]).equals(this.shelf[k10+3][1]) && (this.shelf[k10+3][1]).equals(this.shelf[k10+4][0])) {
+				else if((shelf[k10][4]).equals(shelf[k10+1][3]) && (shelf[k10+1][3]).equals(shelf[k10+2][2]) && (shelf[k10+2][2]).equals(shelf[k10+3][1]) && (shelf[k10+3][1]).equals(shelf[k10+4][0])) {
 					verifica=true;
 					break;
 				}
@@ -412,20 +435,20 @@ public class Card_common {
 			}
 			break;
 
-		case 12: // da corregere
+		case 12: //non implementata
 			
-			for (int k11=0; k11<2; k11++) { 
-				if( !(this.shelf[k11][0]).isEmpty() && !(this.shelf[k11+1][1]).isEmpty() && !(this.shelf[k11+2][2]).isEmpty() && !(this.shelf[k11+3][3]).isEmpty() && !(this.shelf[k11+4][4]).isEmpty()) {
+			/*for (int k11=0; k11<2; k11++) { 
+				if( !(shelf[k11][0]).isEmpty() && !(shelf[k11+1][1]).isEmpty() && !(shelf[k11+2][2]).isEmpty() && !(shelf[k11+3][3]).isEmpty() && !(shelf[k11+4][4]).isEmpty()) {
 					verifica=true;
 					break;
 				}
-				else if( !(this.shelf[k11][4]).isEmpty() && !(this.shelf[k11+1][3]).isEmpty() && !(this.shelf[k11+2][2]).isEmpty() && !(this.shelf[k11+3][1]).isEmpty() && !(this.shelf[k11+4][0]).isEmpty())  {
+				else if( !(shelf[k11][4]).isEmpty() && !(shelf[k11+1][3]).isEmpty() && !(shelf[k11+2][2]).isEmpty() && !(shelf[k11+3][1]).isEmpty() && !(shelf[k11+4][0]).isEmpty())  {
 					verifica=true;
 					break;
 				}
 
 			}
-			break;
+			break;*/
 
 		}
 

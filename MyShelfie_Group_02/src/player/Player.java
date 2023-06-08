@@ -1,9 +1,10 @@
 package player;
 
 import main.Main;
+import java.util.Set;
 import java.util.Random;
 import player.Player;
-
+import java.util.HashSet;
 import bookshelf.Shelf;
 import tiles.*;
 import cards.*;
@@ -11,7 +12,7 @@ import cards.*;
 public class Player {
 
 	private int ID; // INCREMENTO AUTOMATICO
-	
+
 
 	//int c =0;
 	private Shelf shelf;
@@ -21,9 +22,13 @@ public class Player {
 		//this.ID = c++;
 		this.ID = i;
 		this.shelf = new Shelf();
-		this.personalCard= genPersonalGoals();
+		this.personalCard=null;
 		this.setScore(0);
 
+	}
+
+	public void setPersonalCard(personal_goals personalCard) {
+		this.personalCard = personalCard;
 	}
 
 	public Shelf getShelf() {
@@ -39,44 +44,7 @@ public class Player {
 	}
 
 
-	public static personal_goals genPersonalGoals() {
-
-		personal_goals goals = null;
-		Random random = new Random();
-		
-		int numGen=random.nextInt(12) + 1;		
-
-		switch(numGen) {
-		case 1:
-			goals=personal_goals.GOALS1;
-		case 2:
-			goals=personal_goals.GOALS2;
-		case 3:
-			goals=personal_goals.GOALS3;
-		case 4:
-			goals=personal_goals.GOALS4;
-		case 5:
-			goals=personal_goals.GOALS5;
-		case 6:
-			goals=personal_goals.GOALS6;
-		case 7:
-			goals=personal_goals.GOALS7;
-		case 8:
-			goals=personal_goals.GOALS8;
-		case 9:
-			goals=personal_goals.GOALS9;
-		case 10:
-			goals=personal_goals.GOALS10;
-		case 11:
-			goals=personal_goals.GOALS11;
-		case 12:
-			goals=personal_goals.GOALS12;
-		}
-
-
-		return goals;
-
-	}
+	
 
 	public int getScore() {
 		return score;

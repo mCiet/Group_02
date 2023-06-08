@@ -1,6 +1,8 @@
 package cards;
 
+import bookshelf.Shelf;
 import tiles.ObjectEnum;
+import tiles.Tiles;
 
 
 public enum personal_goals { 
@@ -99,7 +101,24 @@ public enum personal_goals {
 		System.out.println(personal_goals[k][0].gObject()+ " "+ personal_goals[k][1].gObject()+ " "+ personal_goals[k][2].gObject()+ " " + personal_goals[k][3].gObject()+ " " + personal_goals[k][4].gObject());
 	}	
 	}
-	
+	public int obb_raggiunto(Shelf shelfGioc) {
+		int cont=0;
+		Tiles[][] shelf = shelfGioc.getShelf();
+		for (int i=0;i<6;i++) {
+			for(int j=0;j<5;j++) {
+				//Tiles tiles = shelf[i][j];
+				if(!(this.personal_goals[i][j]== ObjectEnum.EMPTY)) {
+					if(this.personal_goals[i][j]==(shelf[i][j].gObject())) {
+						cont++;
+					}
+				}
+			}
+		}
+		
+	return cont;
+		
+		
+	}
 	
 	
 }

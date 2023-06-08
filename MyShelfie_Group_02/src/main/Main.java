@@ -135,7 +135,7 @@ public class Main {
 						System.out.println("				");
 						System.out.println("Selezione le tessere nell'ordine in cui vuoi inserirle nella tua libreria");
 						System.out.println("				");
-						
+
 						do {
 							System.out.println("In che posizione si trova la 1° tessera che vuoi prelevare? ");
 							//restiuisce riga gia verificata
@@ -171,7 +171,7 @@ public class Main {
 										System.out.println("Non è possibile inserire due caselle uguali");
 										valida = false;
 									}
-										
+
 
 								}else {
 									valida = false;
@@ -210,8 +210,8 @@ public class Main {
 									valida = false;
 									System.out.println("Non è possibile inserire due caselle uguali");
 								}
-									
-								
+
+
 
 
 							}
@@ -290,7 +290,7 @@ public class Main {
 				System.out.println("Ora la tua shelf e' questa: ");
 				System.out.println("				");
 				vettPlayer[i].getShelf().printShelf();
-				
+
 
 				//controllo tessere comuni
 
@@ -348,7 +348,7 @@ public class Main {
 				System.out.println("Ecco la vostra plancia aggiornata: ");
 				System.out.println("				");
 				livingroom.printBoard();
-				
+
 				System.out.println("				");
 				System.out.println("				");
 				System.out.println("				");
@@ -356,7 +356,7 @@ public class Main {
 
 			}
 
-			//endgame=!endgame(vettPlayer,nGiocatori);
+
 
 		}
 
@@ -374,7 +374,7 @@ public class Main {
 
 
 		//conteggio punti manca punto primo a finire
-		
+
 		//Conteggio tessere colori uguali vicini 
 		for(int i=0;i<nGiocatori;i++) {
 			score = nearTiles(vettPlayer[i]);
@@ -383,15 +383,15 @@ public class Main {
 
 
 		//stampa dei punteggi
-		
+
 		System.out.println("   ");
 		System.out.println("FINE PARTITA");
 		System.out.println("				");
 		System.out.println("TOTALE PUNTI PER OGNI GIOCATORE");
-		
+
 		int max = 0;
 		Player winPlayer = new Player(2);
-		
+
 		for(int i =0;i<nGiocatori;i++) {
 			System.out.println("Giocatore: " + i+1 + " ha totalizzato: " + vettPlayer[i].getScore() + " punti");
 			if(vettPlayer[i].getScore()>max) {
@@ -399,16 +399,16 @@ public class Main {
 				winPlayer = vettPlayer[i];
 			}
 		}
-		
+
 		//stampa vincitore
-		
+
 		System.out.println("				");
 		System.out.println("HA VINTO LA PARTITA");
 		System.out.println("CON " + max + " PUNTI");
 		System.out.println("IL GIOCATORE NUMERO: ");
 		System.out.println("				");
 		System.out.println(winPlayer.getID()+1);
-		
+
 
 	}
 
@@ -432,38 +432,38 @@ public class Main {
 
 
 	}
-	
+
 	public static int nearTiles(Player player) {
 		//controlla e assegna i punti per le tessere vicine
 		Tiles[][] shelf = player.getShelf().getShelf(); //restituisce matrice di tiles
-		
+
 		//controllo per ogni colore
 		int c=0;
-		
+
 		//green
 		c = c + countcolor(shelf, ObjectEnum.GREEN);
-		
+
 		//pink
 		c = c + countcolor(shelf, ObjectEnum.PINK);
-		
+
 		//BLUE
 		c = c + countcolor(shelf, ObjectEnum.BLUE);
-		
+
 		//LIGHT_BLUE
 		c = c + countcolor(shelf, ObjectEnum.LIGHT_BLUE);
-		
+
 		//WHITE
 		c = c + countcolor(shelf, ObjectEnum.WHITE);
-		
+
 		//YELLOW
 		c = c + countcolor(shelf, ObjectEnum.YELLOW);
-		
+
 		return c;
-		
+
 	}
-	
+
 	public static int countcolor(Tiles[][] shelf,ObjectEnum colore) {
-		
+
 		int c=0,punti = 0;
 		for(int i =0;i<6;i++) {
 			for(int j=0;j<5;j++) {
@@ -474,7 +474,7 @@ public class Main {
 				}
 			}
 		}
-		
+
 		if(c == 3) {
 			punti = 2;
 		}
@@ -487,41 +487,41 @@ public class Main {
 		if(c>=6){
 			punti = 8;
 		}
-		
-		
+
+
 		return punti;
 	}
-	
+
 	public static boolean nearcolor(int i, int j, Tiles [][] shelf, ObjectEnum colour) {
-		
+
 		//sopra
 		if(i!=0) {
 			if(shelf[i-1][j].gObject().equals(colour)) {
 				return true;
 			}
 		}
-		
+
 		//sotto
 		if(i!= 5) {
 			if(shelf[i+1][j].gObject().equals(colour)) {
 				return true;
 			}
 		}
-		
+
 		//sinistra
 		if(j!=0) {
 			if(shelf[i][j-1].gObject().equals(colour)) {
 				return true;
 			}
 		}
-		
+
 		//destra
 		if(j!=4) {
 			if(shelf[i][j+1].gObject().equals(colour)) {
 				return true;
 			}
 		}
-		
+
 		return false;
 	}
 
@@ -696,36 +696,48 @@ public class Main {
 			numeriCasuali[i] = numeroGenerato;
 			numeriGenerati.add(numeroGenerato);
 		}
-		for(int i = 0; i < nGioc; i++) {
-			for (int numero : numeriCasuali) {
-				switch(numero) {
-				case 1:
-					vett[i].setPersonalCard(personal_goals.GOALS1);
-				case 2:
-					vett[i].setPersonalCard(personal_goals.GOALS2);
-				case 3:
-					vett[i].setPersonalCard(personal_goals.GOALS3);
-				case 4:
-					vett[i].setPersonalCard(personal_goals.GOALS4);
-				case 5:
-					vett[i].setPersonalCard(personal_goals.GOALS5);
-				case 6:
-					vett[i].setPersonalCard(personal_goals.GOALS6);
-				case 7:
-					vett[i].setPersonalCard(personal_goals.GOALS7);
-				case 8:
-					vett[i].setPersonalCard(personal_goals.GOALS8);
-				case 9:
-					vett[i].setPersonalCard(personal_goals.GOALS9);
-				case 10:
-					vett[i].setPersonalCard(personal_goals.GOALS10);
-				case 11:
-					vett[i].setPersonalCard(personal_goals.GOALS11);
-				case 12:
-					vett[i].setPersonalCard(personal_goals.GOALS12);
-				}
+
+		for (int i=0;i< numeriCasuali.length;i++) {
+			switch(numeriCasuali[i]) {
+			case 1:
+				vett[i].setPersonalCard(personal_goals.GOALS1);
+				break;
+			case 2:
+				vett[i].setPersonalCard(personal_goals.GOALS2);
+				break;
+			case 3:
+				vett[i].setPersonalCard(personal_goals.GOALS3);
+				break;
+			case 4:
+				vett[i].setPersonalCard(personal_goals.GOALS4);
+				break;
+			case 5:
+				vett[i].setPersonalCard(personal_goals.GOALS5);
+				break;
+			case 6:
+				vett[i].setPersonalCard(personal_goals.GOALS6);
+				break;
+			case 7:
+				vett[i].setPersonalCard(personal_goals.GOALS7);
+				break;
+			case 8:
+				vett[i].setPersonalCard(personal_goals.GOALS8);
+				break;
+			case 9:
+				vett[i].setPersonalCard(personal_goals.GOALS9);
+				break;
+			case 10:
+				vett[i].setPersonalCard(personal_goals.GOALS10);
+				break;
+			case 11:
+				vett[i].setPersonalCard(personal_goals.GOALS11);
+				break;
+			case 12:
+				vett[i].setPersonalCard(personal_goals.GOALS12);
+				break;
 			}
 		}
+
 	}
 
 

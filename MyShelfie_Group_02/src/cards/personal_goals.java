@@ -16,7 +16,7 @@ public enum personal_goals {
 	GOALS2(new ObjectEnum[][]{{ObjectEnum.EMPTY, ObjectEnum.EMPTY, ObjectEnum.EMPTY, ObjectEnum.EMPTY, ObjectEnum.EMPTY},
 		{ObjectEnum.EMPTY,ObjectEnum.PINK,ObjectEnum.EMPTY,ObjectEnum.EMPTY,ObjectEnum.EMPTY},
 		{ObjectEnum.GREEN, ObjectEnum.EMPTY,ObjectEnum.YELLOW,ObjectEnum.EMPTY, ObjectEnum.EMPTY },
-		{ObjectEnum.EMPTY,ObjectEnum.EMPTY,ObjectEnum.EMPTY,ObjectEnum.EMPTY,ObjectEnum.YELLOW},
+		{ObjectEnum.EMPTY,ObjectEnum.EMPTY,ObjectEnum.EMPTY,ObjectEnum.EMPTY,ObjectEnum.WHITE},
 		{ObjectEnum.EMPTY,ObjectEnum.EMPTY,ObjectEnum.EMPTY,ObjectEnum.LIGHT_BLUE,ObjectEnum.EMPTY},
 		{ObjectEnum.EMPTY,ObjectEnum.EMPTY,ObjectEnum.EMPTY,ObjectEnum.EMPTY,ObjectEnum.BLUE}} ),
 	GOALS3(new ObjectEnum[][]{{ObjectEnum.EMPTY, ObjectEnum.EMPTY, ObjectEnum.EMPTY, ObjectEnum.EMPTY, ObjectEnum.EMPTY},

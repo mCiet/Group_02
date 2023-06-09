@@ -385,7 +385,7 @@ public class Main {
 		//stampa dei punteggi
 
 		System.out.println("   ");
-		System.out.println("FINE PARTITA");
+		System.out.println("-------------------FINE PARTITA");
 		System.out.println("				");
 		System.out.println("TOTALE PUNTI PER OGNI GIOCATORE");
 
@@ -407,7 +407,7 @@ public class Main {
 		System.out.println("CON " + max + " PUNTI");
 		System.out.println("IL GIOCATORE NUMERO: ");
 		System.out.println("				");
-		System.out.println(winPlayer.getID()+1);
+		System.out.println((winPlayer.getID()+1));
 
 
 	}
